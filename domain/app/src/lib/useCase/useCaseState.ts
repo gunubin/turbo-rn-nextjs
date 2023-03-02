@@ -1,10 +1,10 @@
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
 import {
   commanded,
   failed,
   succeeded,
 } from '@app/lib/useCase/redux/useCaseSlice';
 import {IUseCaseState, useCaseEventTypes} from '@app/lib/useCase/types';
+import {ReduxProvider} from '@app/services/redux/ReduxProvider';
 
 export const createUseCaseState = (): IUseCaseState => {
   const redux = ReduxProvider.create();

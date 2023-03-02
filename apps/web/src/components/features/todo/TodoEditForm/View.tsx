@@ -1,7 +1,7 @@
-import {FormValues} from '@todo/forms/addTodo';
 import React from 'react';
 
 import {Fields} from '@app/lib/validations/types';
+import {FormValues} from '@todo/forms/addTodo';
 
 type Props = {
   fields: Fields<FormValues>;

@@ -8,6 +8,7 @@ import {actions} from '../modalSlice';
 
 describe('@app/modalPromiseMiddleware', () => {
   const doDispatch: Dispatch = (action) => action;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const doGetState = () => {};
 
   const nextHandler = modalPromiseMiddleware({

@@ -5,8 +5,8 @@ import {useTimeout} from '@app/hooks/timer';
 import {createToastManger} from '@app/services/toast/ToastManager';
 import {toastSelectors} from '@app/services/toast/redux/toastSlice';
 
-import {Type} from '@web/components/features/modal/Toast/types';
-import {RootState} from '@web/services/redux/rootReducer';
+import {Type} from '@/components/features/modal/Toast/types';
+import {RootState} from '@/services/redux/rootReducer';
 
 export type Props = {
   id: string;

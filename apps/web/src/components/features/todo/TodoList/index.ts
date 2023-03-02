@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {TodoList} from '@web/components/features/todo/TodoList/View';
-import {useTodoList} from '@web/components/features/todo/TodoList/hooks';
+import {TodoList} from '@/components/features/todo/TodoList/View';
+import {useTodoList} from '@/components/features/todo/TodoList/hooks';
 
 export const ConnectedTodoList = () => {
   const props = useTodoList();

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Toast} from '@web/components/features/modal/Toast';
+import {Toast} from '@/components/features/modal/Toast';
 
 import {useTransientToast} from './hooks';
 import {Props} from './types';

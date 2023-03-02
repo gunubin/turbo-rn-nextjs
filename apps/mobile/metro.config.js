@@ -4,7 +4,6 @@
  *
  * @format
  */
-
 const {getMetroConfig} = require('react-native-monorepo-tools');
 
 const metroConfig = getMetroConfig();

@@ -16,6 +16,7 @@ export const modalPromiseMiddleware: Middleware<DialogPromiseDispatch> = () => {
         const dialogPromise = new Promise((resolve: Resolver) => {
           promiseResolve = resolve;
         });
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         dialogPromiseResolvers[action.payload.id] = promiseResolve!;
         return dialogPromise;
       }

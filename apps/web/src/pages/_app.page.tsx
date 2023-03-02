@@ -7,11 +7,11 @@ import {Provider} from 'react-redux';
 import {EnvironmentService} from '@app/services/EnvironmentService';
 import {ReduxProvider} from '@app/services/redux/ReduxProvider';
 
-import {ConnectedBlockingIndicator} from '@web/components/features/modal/BlockingIndicator';
-import {ConnectedModal} from '@web/components/features/modal/MessageDialog';
-import {ConnectedTransientToastList} from '@web/components/features/modal/TransientToastList';
-import {useAppPage} from '@web/pages/_app/hooks';
-import {configureStore} from '@web/services/redux/store';
+import {ConnectedBlockingIndicator} from '@/components/features/modal/BlockingIndicator';
+import {ConnectedModal} from '@/components/features/modal/MessageDialog';
+import {ConnectedTransientToastList} from '@/components/features/modal/TransientToastList';
+import {useAppPage} from '@/pages/_app/hooks';
+import {configureStore} from '@/services/redux/store';
 
 EnvironmentService.create({
   API_BASE_URL: process.env.API_BASE_URL,

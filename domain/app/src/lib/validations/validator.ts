@@ -101,6 +101,7 @@ export const createValidatorFactory = <TParams, TFields = any>({
       params,
       type,
       validate(value: any, values: TFields) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         return validate(value, values, params!);
       },
     };

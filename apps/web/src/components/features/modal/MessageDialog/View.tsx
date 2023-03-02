@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Dialog} from '@web/components/features/modal/Dialog';
+import {Dialog} from '@/components/features/modal/Dialog';
 
 import {Props} from './types';
 

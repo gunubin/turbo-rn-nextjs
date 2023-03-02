@@ -1,7 +1,8 @@
-import {TodoId} from '@todo/domain/todo/TodoId';
-import {todoApi} from '@todo/services/todo/redux/todoApi';
 import {useRouter} from 'next/router';
 import {useSelector} from 'react-redux';
+
+import {TodoId} from '@todo/domain/todo/TodoId';
+import {todoApi} from '@todo/services/todo/redux/todoApi';
 
 export const useTodoDetailHeader = () => {
   const {

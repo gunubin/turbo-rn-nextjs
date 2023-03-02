@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {BlockingIndicatorPayload} from '@app/services/modal/BlockingIndicatorPayload';
 import {indicatorSelectors} from '@app/services/modal/redux/indicatorSlice';
 
-import {BlockingIndicator} from '@web/components/features/modal/BlockingIndicator/View';
+import {BlockingIndicator} from '@/components/features/modal/BlockingIndicator/View';
 
 type BlockingIndicatorProps = React.ComponentProps<typeof BlockingIndicator>;
 

@@ -1,8 +1,9 @@
-import {Todo} from '@todo/domain/todo/Todo';
-import {TodoId} from '@todo/domain/todo/TodoId';
 import React from 'react';
 
-import {TodoListItem} from '@web/components/features/todo/TodoListItem';
+import {Todo} from '@todo/domain/todo/Todo';
+import {TodoId} from '@todo/domain/todo/TodoId';
+
+import {TodoListItem} from '@/components/features/todo/TodoListItem';
 
 type Props = {
   list?: Todo[];

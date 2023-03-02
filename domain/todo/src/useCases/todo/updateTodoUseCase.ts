@@ -1,6 +1,5 @@
 
 import {createUseCaseFactory} from '@app/lib/useCase/utils';
-
 import {Todo} from '@todo/domain/todo/Todo';
 import {useTodoList} from '@todo/services/todo/TodoList';
 

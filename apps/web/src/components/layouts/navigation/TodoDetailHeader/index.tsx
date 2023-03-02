@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {TodoDetailHeader} from '@web/components/layouts/navigation/TodoDetailHeader/View';
-import {useTodoDetailHeader} from '@web/components/layouts/navigation/TodoDetailHeader/hooks';
+import {TodoDetailHeader} from '@/components/layouts/navigation/TodoDetailHeader/View';
+import {useTodoDetailHeader} from '@/components/layouts/navigation/TodoDetailHeader/hooks';
 
 export const ConnectedTodoDetailHeader = () => {
   const props = useTodoDetailHeader();

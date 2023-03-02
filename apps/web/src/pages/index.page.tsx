@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
-import {ConnectedTodoInputForm} from '@web/components/features/todo/TodoInputForm';
-import {ConnectedTodoList} from '@web/components/features/todo/TodoList';
-import {HomeLayout} from '@web/components/layouts/HomeLayout';
+import {ConnectedTodoInputForm} from '@/components/features/todo/TodoInputForm';
+import {ConnectedTodoList} from '@/components/features/todo/TodoList';
+import {HomeLayout} from '@/components/layouts/HomeLayout';
 
 export default function Home() {
   return (

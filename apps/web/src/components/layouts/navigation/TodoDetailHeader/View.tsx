@@ -1,9 +1,10 @@
-import {Todo} from '@todo/domain/todo/Todo';
 import React from 'react';
 
+import {Todo} from '@todo/domain/todo/Todo';
 
 
-import {BackButton} from '@web/components/layouts/navigation/BackButton';
+
+import {BackButton} from '@/components/layouts/navigation/BackButton';
 
 type Props = {
   item?: Todo;

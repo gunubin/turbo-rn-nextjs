@@ -1,5 +1,4 @@
-
-import {Top} from '@mobile/components/pages/Top';
+import {Top} from '@/components/pages/Top';
 
 export const screenViewConfig = {
   component: Top,

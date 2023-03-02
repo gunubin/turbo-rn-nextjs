@@ -1,5 +1,4 @@
 import {createSchema} from '@app/lib/validations/schema';
-
 import {TodoTitle} from '@todo/domain/todo/TodoTitle';
 
 export type FormValues = {

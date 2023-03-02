@@ -5,9 +5,9 @@ import {createMessageDialog} from '@app/services/modal/MessageDialog';
 import {MessageDialogPayload} from '@app/services/modal/MessageDialogPayload';
 import {modalSelectors} from '@app/services/modal/redux/modalSlice';
 
-import {Dialog} from '@web/components/features/modal/Dialog';
-import {MessageDialog} from '@web/components/features/modal/MessageDialog/View';
-import {Button} from '@web/components/ui/Button';
+import {Dialog} from '@/components/features/modal/Dialog';
+import {MessageDialog} from '@/components/features/modal/MessageDialog/View';
+import {Button} from '@/components/ui/Button';
 type ButtonType = React.ComponentProps<typeof Button>['type'];
 
 type DialogProps = React.ComponentProps<typeof Dialog>;

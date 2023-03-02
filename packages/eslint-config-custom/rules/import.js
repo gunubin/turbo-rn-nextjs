@@ -24,20 +24,20 @@ module.exports = {
           'parent',
           'index',
         ],
+        /* TODO: dir増えるごとに編集するの面倒 */
         pathGroups: [
           {
-            pattern: '@app/**',
+            pattern: '@{app,todo}/**',
             group: 'internal',
             position: 'before',
           },
           {
-            pattern: '@{mobile,web}/styles/**',
+            pattern: '@/styles/**',
             group: 'internal',
             position: 'after',
           },
           {
-            /* TODO: dir増えるごとに編集するの面倒 */
-            pattern: '@{mobile,web,assets}/**',
+            pattern: '@/**',
             group: 'internal',
           },
         ],

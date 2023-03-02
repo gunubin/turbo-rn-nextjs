@@ -52,6 +52,7 @@ export const createErrorManager = <TError extends BaseError>(
         } else if (displayType === 'toast') {
           toastManager.show({message, status: 'Error'});
         } else {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const _exhaustiveCheck: never = errorPayload;
         }
       }

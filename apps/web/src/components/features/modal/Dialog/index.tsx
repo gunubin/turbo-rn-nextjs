@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Button} from '@web/components/ui/Button';
+import {Button} from '@/components/ui/Button';
 
 import {Props} from './types';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ConnectedTodoDetailHeader} from '@web/components/layouts/navigation/TodoDetailHeader';
+import {ConnectedTodoDetailHeader} from '@/components/layouts/navigation/TodoDetailHeader';
 
 type Props = {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import {useLayoutEffect, useMemo} from 'react';
+import {useEffect, useMemo} from 'react';
 
 import {ApiError} from '@app/api/ApiError';
 import {createErrorManager} from '@app/services/error/ErrorManager';
@@ -8,9 +8,9 @@ import {networkErrorHandler} from '@app/services/error/handlers';
 export const useErrorDisplay = (error: unknown) => {
   const errorManager = useMemo(
     () => createErrorManager(networkErrorHandler),
-    [networkErrorHandler, networkErrorHandler]
+    []
   );
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (error instanceof ApiError) {
       errorManager.show({
         defaultErrorDisplayType: 'toast',

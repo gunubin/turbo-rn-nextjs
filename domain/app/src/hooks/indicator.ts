@@ -1,4 +1,4 @@
-import {useLayoutEffect, useMemo} from 'react';
+import {useEffect, useMemo} from 'react';
 
 import {createBlockingIndicator} from '@app/services/modal/BlockingIndicator';
 
@@ -10,7 +10,7 @@ type Options = {
 export const useIndicator = (isLoading: boolean, options?: Options) => {
   const blockingIndicator = useMemo(() => createBlockingIndicator(), []);
   const {indicatorId: id} = options || {};
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isLoading) {
       blockingIndicator.show({
         id,

@@ -1,8 +1,8 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
-import {screenViewConfig as topScreenViewConfig} from '@mobile/components/pages/Top/screen';
-import {RootParamList} from '@mobile/navigation/routes';
+import {screenViewConfig as topScreenViewConfig} from '@/components/pages/Top/screen';
+import {RootParamList} from '@/navigation/routes';
 
 import * as routeNames from './routeNames';
 

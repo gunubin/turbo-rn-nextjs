@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Header} from '@web/components/layouts/navigation/Header';
+import {Header} from '@/components/layouts/navigation/Header';
 
 type Props = {
   children: React.ReactNode;

@@ -1,11 +1,11 @@
 type ParamListBase = Record<string, object | undefined>;
 
 export interface INavigation<
-  TParamList extends ParamListBase = any /*FIXME: 厳密にするのかどうか*/
+  TParamList extends ParamListBase = any /*FIXME: 厳密にするのかどうか*/,
 > {
   navigate<TRouteName extends keyof TParamList>(
     name: TRouteName,
-    params?: TParamList[TRouteName]
+    params?: TParamList[TRouteName],
   ): void;
   reset(name: string, params?: object | undefined): void;
   goBack(): void;

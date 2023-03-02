@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
-import {ConnectedTodoEditForm} from '@web/components/features/todo/TodoEditForm';
-import {TodoDetailLayout} from '@web/components/layouts/TodoDetailLayout';
+import {ConnectedTodoEditForm} from '@/components/features/todo/TodoEditForm';
+import {TodoDetailLayout} from '@/components/layouts/TodoDetailLayout';
 
 import {useTodoDetailPage} from './hooks';
 

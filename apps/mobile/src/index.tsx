@@ -7,10 +7,13 @@ import {Provider} from 'react-redux';
 import {EnvironmentService} from '@app/services/EnvironmentService';
 import {ReduxProvider} from '@app/services/redux/ReduxProvider';
 
-import {RootNavigator} from '@mobile/navigation/navigators';
-import {navigationRef} from '@mobile/services/navigation/Navigation';
-import {RootState} from '@mobile/services/redux/rootReducer';
-import {AppDispatch, configureStore} from '@mobile/services/redux/store';
+import {ConnectedModal} from '@/components/features/modal';
+import {ConnectedBlockingIndicator} from '@/components/features/modal/BlockingIndicator';
+import {ConnectedTransientToastList} from '@/components/features/toast/TransientToastList';
+import {RootNavigator} from '@/navigation/navigators';
+import {navigationRef} from '@/services/navigation/Navigation';
+import {RootState} from '@/services/redux/rootReducer';
+import {AppDispatch, configureStore} from '@/services/redux/store';
 
 import {useRootPage} from './hooks';
 
@@ -30,6 +33,9 @@ export const App = () => {
         <NavigationContainer ref={navigationRef}>
           <RootNavigator />
         </NavigationContainer>
+        <ConnectedBlockingIndicator />
+        <ConnectedModal />
+        <ConnectedTransientToastList />
       </Provider>
     </SafeAreaProvider>
   );

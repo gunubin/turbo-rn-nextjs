@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import {modalPromiseMiddleware} from '@app/services/modal/redux/modalPromiseMiddleware';
 import {appApi} from '@app/services/redux/appApi';
 
-import rootReducer from '@web/services/redux/rootReducer';
+import rootReducer from '@/services/redux/rootReducer';
 
 const middlewares = [thunk, modalPromiseMiddleware, appApi.middleware];
 

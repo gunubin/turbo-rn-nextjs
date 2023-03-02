@@ -8449,10 +8449,10 @@ react-native-screens@^3.20.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-spacing-system@^2.0.0-rc.0:
-  version "2.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/react-native-spacing-system/-/react-native-spacing-system-2.0.0-rc.0.tgz#2f1f9533929a69605ed970f066ae10535b06ac8d"
-  integrity sha512-mZpFnO0iFzw4rdwE5DGieGDJ0/FWPzKIgVGADoy+JaO7ERAEri9T7X+cpw8mYTX5zrVplTINx411sOKrlere+w==
+react-native-spacing-system@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-spacing-system/-/react-native-spacing-system-1.2.0.tgz#8b9d5c40d8899bc1c28c221d9b31c0a0c6ce17c7"
+  integrity sha512-thnNN4bQdj+fgx1TTHf8m3ZEimqeyrv1vYKNAP1GmEiIMjzBaCSPIhWpFzKtz2RLTDbSmxwsrbAA2UvMlSIjCw==
 
 react-native-svg-transformer@^1.0.0:
   version "1.0.0"

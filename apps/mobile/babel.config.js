@@ -13,7 +13,7 @@ module.exports = {
         alias: {
           '@app': `${__dirname}/../../domain/app/src`,
           '@todo': `${__dirname}/../../domain/todo/src`,
-          '@mobile': `${__dirname}/src`,
+          '@': `${__dirname}/src`,
         },
         extensions: ['.js', '.ts', '.tsx'],
         root: ['.'],

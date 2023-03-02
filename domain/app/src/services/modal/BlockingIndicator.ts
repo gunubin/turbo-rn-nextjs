@@ -1,10 +1,10 @@
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
 import {BlockingIndicatorPayload} from '@app/services/modal/BlockingIndicatorPayload';
 import {
   indicatorSelectors,
   actions,
 } from '@app/services/modal/redux/indicatorSlice';
 import {IBlockingIndicator} from '@app/services/modal/types';
+import {ReduxProvider} from '@app/services/redux/ReduxProvider';
 
 export const createBlockingIndicator = (): IBlockingIndicator => {
   const redux = ReduxProvider.create();
