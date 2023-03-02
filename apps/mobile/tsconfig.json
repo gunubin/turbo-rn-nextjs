@@ -1,11 +1,16 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
-  "references": [
-    {
-      "path": "../../domain/app"
-    },
-    {
-      "path": "../../domain/todo"
+  "compilerOptions": {
+    "paths": {
+      "@app/*": [
+        "../../domain/app/src/*"
+      ],
+      "@todo/*": [
+        "../../domain/todo/src/*"
+      ],
+      "@mobile/*": [
+        "./src/*"
+      ]
     }
-  ]
+  },
 }

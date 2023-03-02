@@ -1,0 +1,3 @@
+{
+    "files": ["package.json", "./packages/eslint-config-custom/package.json", "./packages/tsconfig/package.json", "./domain/app/package.json", "./domain/todo/package.json", "./apps/web/package.json", "./apps/mobile/package.json"]
+}

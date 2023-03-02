@@ -1,0 +1,45 @@
+{
+  "name": "rn-nextjs",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "eslint-config-custom": "*",
+    "jest": "^26.6.3",
+    "jest-date-mock": "^1.0.8",
+    "jest-junit": "^13.2.0",
+    "prettier": "latest",
+    "ts-jest": "^26.5.6",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "packageManager": "yarn@1.22.19",
+  "private": true,
+  "scripts": {
+    "android:build": "yarn workspace @acard/mobile android",
+    "android:start": "yarn workspace @acard/mobile start",
+    "api": "yarn workspace web api",
+    "build": "turbo run build",
+    "clean": "yarn clean:npm && yarn clean:mobile && yarn && yarn ios:pods",
+    "clean:android": "yarn workspace @acard/mobile clean:android",
+    "clean:ios": "yarn workspace @acard/mobile clean:ios",
+    "clean:mobile": "yarn workspace @acard/mobile clean",
+    "clean:npm": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock && yarn",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "ios:build": "yarn workspace @acard/mobile ios",
+    "ios:pods": "yarn workspace @acard/mobile pods",
+    "ios:start": "yarn workspace @acard/mobile start",
+    "lint": "turbo run lint",
+    "lintfix": "turbo run lint -- --fix",
+    "test": "turbo run test",
+    "tsc": "turbo run tsc"
+  },
+  "workspaces": [
+    "apps/*",
+    "domain/*",
+    "packages/*"
+  ]
+}

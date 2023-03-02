@@ -1,0 +1,23 @@
+{
+  "extends": "tsconfig/base.json",
+  "include": [
+    "@types",
+    "src",
+    "./__fixtures__"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": [
+        "./src/*"
+      ]
+    },
+    "rootDirs": [
+      "src"
+    ],
+    "composite": true
+  }
+}
