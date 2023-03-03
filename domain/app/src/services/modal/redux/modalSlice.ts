@@ -7,10 +7,11 @@ import {
 
 import {ModalId} from '@app/services/modal/ModalId';
 import {ModalPayload} from '@app/services/modal/types';
+import {AppState} from '@app/services/redux/appReducer';
 
 const modalEntityAdapter = createEntityAdapter<ModalPayload>();
 
-const selectState = (state: any) => state.modal;
+const selectState = (state: AppState) => state.modal;
 const baseSelectors = modalEntityAdapter.getSelectors(selectState);
 const selectLatestModal = createSelector(
   baseSelectors.selectAll,

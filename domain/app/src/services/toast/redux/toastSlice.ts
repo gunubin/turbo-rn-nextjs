@@ -1,5 +1,6 @@
 import {createEntityAdapter, createSlice} from '@reduxjs/toolkit';
 
+import {AppState} from '@app/services/redux/appReducer';
 import {ToastStatus} from '@app/services/toast/types';
 
 type ToastState = {
@@ -10,11 +11,13 @@ type ToastState = {
 
 const sliceName = 'toast';
 const toastEntityAdapter = createEntityAdapter<ToastState>();
-const selectState = (state: any) => state.toast;
+const initialState = toastEntityAdapter.getInitialState();
+
+const selectState = (state: AppState) => state.toast;
 const baseSelectors = toastEntityAdapter.getSelectors(selectState);
 
 const slice = createSlice({
-  initialState: toastEntityAdapter.getInitialState(),
+  initialState,
   name: sliceName,
   reducers: {
     hid: toastEntityAdapter.removeOne,

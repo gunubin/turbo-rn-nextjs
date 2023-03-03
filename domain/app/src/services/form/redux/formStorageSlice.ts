@@ -1,5 +1,7 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
+import {AppState} from '@app/services/redux/appReducer';
+
 import {
   FormStorageEntities,
   FormStorageEntity,
@@ -10,7 +12,7 @@ type FormState = FormStorageEntities;
 
 const initialState: FormState = {};
 
-const selectState = (state: any): FormState => state.formStorage;
+const selectState = (state: AppState): FormState => state.formStorage;
 const selectForm = <TFormName extends FormStorageName>(formName: TFormName) =>
   createSelector(selectState, (state) => {
     return state[formName];

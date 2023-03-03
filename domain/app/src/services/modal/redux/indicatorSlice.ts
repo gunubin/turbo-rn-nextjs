@@ -5,10 +5,11 @@ import {
 } from '@reduxjs/toolkit';
 
 import {BlockingIndicatorPayload} from '@app/services/modal/BlockingIndicatorPayload';
+import {AppState} from '@app/services/redux/appReducer';
 
 const indicatorEntityAdapter = createEntityAdapter<BlockingIndicatorPayload>();
 
-const selectState = (state: any) => state.indicator;
+const selectState = (state: AppState) => state.indicator;
 const baseSelectors = indicatorEntityAdapter.getSelectors(selectState);
 const selectLatestIndicator = createSelector(baseSelectors.selectAll, (all) => {
   return all[all.length - 1] as any;

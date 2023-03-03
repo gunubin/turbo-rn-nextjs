@@ -13,6 +13,7 @@ import {
   UseCaseEventFailed,
   UseCaseEventSucceeded,
 } from '@app/lib/useCase/types';
+import {AppState} from '@app/services/redux/appReducer';
 
 // commandの実行時系列を把握したいならIDはランダムにしてname prop追加したほうがいい
 type UseCaseEntity = {
@@ -30,9 +31,9 @@ export type UseCaseAction = CommandedAction | SucceededAction | FailedAction;
 
 const useCaseAdapter = createEntityAdapter<UseCaseEntity>();
 const initialState = useCaseAdapter.getInitialState();
-type UseCaseState = typeof initialState;
+export type UseCaseState = typeof initialState;
 const baseSelectors = useCaseAdapter.getSelectors(
-  (state: any): UseCaseState => state.useCase
+  (state: AppState): UseCaseState => state.useCase
 );
 
 const isUseCaseProcessing = (useCase: UseCaseEntity) =>
