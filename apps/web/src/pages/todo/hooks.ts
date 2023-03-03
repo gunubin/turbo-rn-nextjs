@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux';
 import {TodoId} from '@todo/domain/todo/TodoId';
 import {todoApi} from '@todo/services/todo/redux/todoApi';
 
-
 export const useTodoDetailPage = () => {
   const {
     query: {todoId = ''},

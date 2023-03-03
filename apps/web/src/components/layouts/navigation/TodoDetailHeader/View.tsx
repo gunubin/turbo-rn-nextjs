@@ -2,8 +2,6 @@ import React from 'react';
 
 import {Todo} from '@todo/domain/todo/Todo';
 
-
-
 import {BackButton} from '@/components/layouts/navigation/BackButton';
 
 type Props = {

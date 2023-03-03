@@ -1,18 +1,14 @@
 import {FieldErrors, FieldValues, Resolver} from 'react-hook-form';
 
-
 import {required} from './rules';
 import {
   FieldValuesBySchema,
   RequiredOption,
   ValidationSchema,
-  FieldValuesByValueObjectReturnValue, ValidationSchemaRulesMessages,
+  FieldValuesByValueObjectReturnValue,
+  ValidationSchemaRulesMessages,
 } from './types';
-import {
-  createValidatorFromValueObject,
-  validate,
-  Validator,
-} from './validator';
+import {createValidatorFromValueObject, validate, Validator} from './validator';
 
 export function hasMessageRequiredOption(
   value: RequiredOption
@@ -24,7 +20,10 @@ export function createFormResolver<
   TSchema extends ValidationSchema<TFields>,
   TFields extends FieldValues = FieldValuesBySchema<TSchema>,
   TValueObjectFieldValues extends FieldValues = FieldValuesByValueObjectReturnValue<TFields>
->(schema: TSchema, fieldsErrors?: ValidationSchemaRulesMessages<TFields>): Resolver<TValueObjectFieldValues> {
+>(
+  schema: TSchema,
+  fieldsErrors?: ValidationSchemaRulesMessages<TFields>
+): Resolver<TValueObjectFieldValues> {
   return async (values) => {
     const errors = Object.keys(schema).reduce<FieldErrors<TFields>>(
       (acc, key) => {
@@ -32,7 +31,7 @@ export function createFormResolver<
         const field = schema[key] || {};
         if (field.required) {
           if (fieldsErrors && fieldsErrors[key]) {
-              itemRules.push(required(fieldsErrors[key]?.required))
+            itemRules.push(required(fieldsErrors[key]?.required));
           } else {
             hasMessageRequiredOption(field.required)
               ? itemRules.push(required(field.required.message))
@@ -43,7 +42,9 @@ export function createFormResolver<
           itemRules = [
             ...itemRules,
             ...createValidatorFromValueObject({
-              messages: ((fieldsErrors && fieldsErrors[key]) || field.ruleMessages || {}) as any,
+              messages: ((fieldsErrors && fieldsErrors[key]) ||
+                field.ruleMessages ||
+                {}) as any,
               valueObject: field.valueObject,
             }),
           ];

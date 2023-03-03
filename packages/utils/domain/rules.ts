@@ -1,4 +1,4 @@
-import {RuleCreator} from '@app/lib/domain/types';
+import {RuleCreator} from './types';
 
 /**
  * フォーマット

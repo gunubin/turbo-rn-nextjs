@@ -14,12 +14,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HomeLayout>
-      <div className="container">
-        <div className="mt-5">
-          <ConnectedTodoInputForm />
-          <div className="mt-5"><ConnectedTodoList /></div>
+        <div className="container">
+          <div className="mt-5">
+            <ConnectedTodoInputForm />
+            <div className="mt-5">
+              <ConnectedTodoList />
+            </div>
+          </div>
         </div>
-      </div>
       </HomeLayout>
     </>
   );

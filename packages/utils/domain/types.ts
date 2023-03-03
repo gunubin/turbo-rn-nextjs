@@ -14,4 +14,3 @@ export type ValueObject<T = any, K extends Rule<string>[] = []> = {
   create(value: any): T;
   rules: K;
 };
-

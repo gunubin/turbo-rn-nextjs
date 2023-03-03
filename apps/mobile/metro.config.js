@@ -15,9 +15,10 @@ const monorepoMetroTools = getMetroTools();
 
 const androidAssetsResolutionFix = getMetroAndroidAssetsResolutionFix();
 
-const watchFolders = monorepoMetroTools.watchFolders.filter(w =>
-  w.match(/domain|node_modules/),
-);
+// const watchFolders = monorepoMetroTools.watchFolders.filter(w =>
+//   w.match(/domain|form|node_modules/),
+// );
+const watchFolders = monorepoMetroTools.watchFolders;
 
 module.exports = (async () => {
   const {

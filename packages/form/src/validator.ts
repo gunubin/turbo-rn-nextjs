@@ -1,4 +1,4 @@
-import {Rule, ValueObject} from '@app/lib/domain/types';
+import {Rule, ValueObject} from 'utils/domain';
 
 type ValidationMessage<TParams> = TParams extends void
   ? string

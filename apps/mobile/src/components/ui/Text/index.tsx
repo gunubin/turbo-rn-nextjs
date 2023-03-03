@@ -16,7 +16,7 @@ export const Text: React.FC<Props> = ({
 }) => {
   const styles = useMemo(
     () => getStyle({align, color, size, weight}),
-    [align, color, size, weight]
+    [align, color, size, weight],
   );
   return (
     <RNText style={styles.text} {...rest}>

@@ -1,4 +1,4 @@
-import {Fields} from 'form';
+import {Fields} from '../../../../../../../packages/form';
 import React from 'react';
 
 import {FormValues} from '@todo/forms/addTodo';

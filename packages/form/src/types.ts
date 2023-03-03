@@ -1,9 +1,7 @@
 import {InputHTMLAttributes} from 'react';
 import {FieldValues} from 'react-hook-form';
-
-// TODO: @appからの参照を修正したい
-import {PartialRecord} from '@app/@types/utils';
-import {Rule, ValueObject} from '@app/lib/domain/types';
+import {Rule, ValueObject} from 'utils/domain';
+import {PartialRecord} from 'utils/types';
 
 export type InputProps = {
   name: string;
@@ -48,7 +46,9 @@ export type ValidationSchema<TFields extends FieldValues> = {
 };
 
 // ValueObjectの返り型
-export type ValueObjectReturnType<T> = T extends ValueObject<infer U, any> ? U : T;
+export type ValueObjectReturnType<T> = T extends ValueObject<infer U, any>
+  ? U
+  : T;
 
 export type FieldValuesBySchema<T> = T extends ValidationSchema<infer U>
   ? U
@@ -58,20 +58,19 @@ export type FieldValuesByValueObjectReturnValue<FieldValues> = {
   [K in keyof FieldValues]: ValueObjectReturnType<FieldValues[K]>;
 };
 
-
 // validation messageの上書き用の型
 
-type SchemaValueObjectFieldRulesMessages<TValueObject extends ValueObject> = PartialRecord<
-  RuleName<ValueObjectRules<TValueObject>[number]> | 'required',
-  string
->;
+type SchemaValueObjectFieldRulesMessages<TValueObject extends ValueObject> =
+  PartialRecord<
+    RuleName<ValueObjectRules<TValueObject>[number]> | 'required',
+    string
+  >;
 
 type SchemaPrimitiveFieldRulesMessages = PartialRecord<'required', string>;
 
 type SchemaFieldRulesMessages<TField> = TField extends ValueObject<any, any>
   ? SchemaValueObjectFieldRulesMessages<TField>
   : SchemaPrimitiveFieldRulesMessages;
-
 
 export type ValidationSchemaRulesMessages<TFieldValues extends FieldValues> = {
   [K in keyof TFieldValues]?: SchemaFieldRulesMessages<TFieldValues[K]>;

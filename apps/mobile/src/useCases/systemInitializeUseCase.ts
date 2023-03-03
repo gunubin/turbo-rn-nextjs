@@ -2,8 +2,7 @@ import {createUseCaseFactory} from '@app/lib/useCase/utils';
 
 export const useSystemInitializeUseCase = createUseCaseFactory(
   () => {
-    return async () => {
-    };
+    return async () => {};
   },
   {
     id: 'useSystemInitializeUseCase',

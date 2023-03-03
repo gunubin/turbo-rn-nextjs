@@ -2,7 +2,6 @@ import {appApi} from '@app/services/redux/appApi';
 import {Todo} from '@todo/domain/todo/Todo';
 import {TodoId} from '@todo/domain/todo/TodoId';
 
-
 export const todoApi = appApi.injectEndpoints({
   endpoints: (builder) => ({
     createTodo: builder.mutation<Todo, Todo>({

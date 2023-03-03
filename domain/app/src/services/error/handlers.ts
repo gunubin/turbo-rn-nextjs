@@ -1,8 +1,4 @@
-import {
-  AppError,
-  NetworkError,
-  ValidError,
-} from '@app/services/error/errors';
+import {AppError, NetworkError, ValidError} from '@app/services/error/errors';
 import {ErrorHandler} from '@app/services/error/types';
 
 export const applicationErrorHandler: ErrorHandler<AppError> = () => {

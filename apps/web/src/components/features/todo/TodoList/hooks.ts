@@ -1,4 +1,3 @@
-
 import {useCallback} from 'react';
 
 import {createQuery} from '@app/lib/useCase/utils';
@@ -6,8 +5,6 @@ import {useNavigation} from '@app/services/navigation/Navigation';
 import {TodoId} from '@todo/domain/todo/TodoId';
 import {useGetTodoListQuery} from '@todo/services/todo/redux/todoApi';
 import {useRemoveTodoUseCase} from '@todo/useCases/todo/removeTodoUseCase';
-
-
 
 export const useTodoList = () => {
   const [removeTodo] = useRemoveTodoUseCase();

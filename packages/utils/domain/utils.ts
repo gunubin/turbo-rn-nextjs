@@ -1,4 +1,4 @@
-import {Rule, ValueObject} from '@app/lib/domain/types';
+import {Rule, ValueObject} from './types';
 
 // MEMO: 命名悩み defineValueObjectCreator的な
 export const defineValueObject = <

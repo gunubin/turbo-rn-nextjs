@@ -19,4 +19,3 @@ export const Button: React.FC<Props> = ({
     </button>
   );
 };
-

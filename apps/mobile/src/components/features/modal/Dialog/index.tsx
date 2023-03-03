@@ -18,8 +18,7 @@ export const Dialog: React.FC<Props> = ({
       visible={isVisible}
       transparent
       animationType="fade"
-      supportedOrientations={['portrait']}
-    >
+      supportedOrientations={['portrait']}>
       <SpaceInset vertical="l" horizontal="s" flex={1}>
         <TouchableOpacity
           activeOpacity={1.0}

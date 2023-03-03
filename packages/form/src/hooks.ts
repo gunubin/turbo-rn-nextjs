@@ -16,7 +16,6 @@ import {
   ValidationSchemaRulesMessages,
 } from './types';
 
-
 type Options<TFieldValues extends FieldValues> = Pick<
   UseFormProps<FieldValuesByValueObjectReturnValue<TFieldValues>>,
   'defaultValues'

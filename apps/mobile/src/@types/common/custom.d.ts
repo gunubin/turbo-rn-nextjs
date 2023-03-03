@@ -15,6 +15,5 @@ declare module '*.svg' {
   export default content;
 }
 
-
 declare module 'react-native-smooth-pincode-input';
 declare module 'react-native-picker-select';

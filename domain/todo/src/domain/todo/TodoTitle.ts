@@ -1,5 +1,4 @@
-import {maxLength} from '@app/lib/domain/rules';
-import {defineValueObject} from '@app/lib/domain/utils';
+import {defineValueObject, maxLength} from 'utils/domain';
 
 export type TodoTitle = string & {readonly brand: unique symbol};
 

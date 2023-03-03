@@ -1,4 +1,3 @@
-
 import {createUseCaseFactory} from '@app/lib/useCase/utils';
 import {createToastManger} from '@app/services/toast/ToastManager';
 import {Todo} from '@todo/domain/todo/Todo';
@@ -14,7 +13,7 @@ export const useUpdateTodoUseCase = createUseCaseFactory<Params>(
     const toast = createToastManger();
     return async function removeTodoUseCase({item}) {
       await todoList.update({item});
-      toast.show({message: '保存しました', status: 'Success'})
+      toast.show({message: '保存しました', status: 'Success'});
     };
   },
   {id: 'removeTodoUseCase'}

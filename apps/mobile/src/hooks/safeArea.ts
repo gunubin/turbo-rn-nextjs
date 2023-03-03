@@ -4,12 +4,12 @@ import {Platform} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export const useSafeAreaBottomInset = (
-  bottom: number = safeAreaInset.bottom // safeAreaがない端末で担保する余白
+  bottom: number = safeAreaInset.bottom, // safeAreaがない端末で担保する余白
 ) => {
   const insets = useSafeAreaInsets();
   return useMemo(
     () => (insets.bottom === 0 ? bottom : Math.max(insets.bottom, bottom)),
-    [insets.bottom, bottom]
+    [insets.bottom, bottom],
   );
 };
 
