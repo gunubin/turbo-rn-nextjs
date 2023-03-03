@@ -1,3 +1,5 @@
+export type Brand<T, U extends symbol> = T & {readonly __brand: U};
+
 export type Validate = (value: any) => boolean;
 
 export type Rule<TName extends string> = {
@@ -12,3 +14,4 @@ export type ValueObject<T = any, K extends Rule<string>[] = []> = {
   create(value: any): T;
   rules: K;
 };
+

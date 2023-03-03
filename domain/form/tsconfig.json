@@ -1,9 +1,8 @@
 {
   "extends": "tsconfig/base.json",
   "include": [
-    "src/@types",
-    "src",
-    "./__fixtures__"
+    "@types",
+    "src"
   ],
   "exclude": [
     "node_modules"
@@ -11,13 +10,13 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@app/*": [
+      "@todo/*": [
         "./src/*"
+      ],
+      "@app/*": [
+        "../../domain/app/src/*"
       ]
-    },
-    "rootDirs": [
-      "src"
-    ],
-    "composite": true
+    }
   }
 }
+

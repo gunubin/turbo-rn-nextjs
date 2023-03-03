@@ -4,20 +4,47 @@
  *
  * @format
  */
-const {getMetroConfig} = require('react-native-monorepo-tools');
+const {getDefaultConfig} = require('metro-config');
+const exclusionList = require('metro-config/src/defaults/exclusionList');
+const {
+  getMetroTools,
+  getMetroAndroidAssetsResolutionFix,
+} = require('react-native-monorepo-tools');
 
-const metroConfig = getMetroConfig();
+const monorepoMetroTools = getMetroTools();
 
-const watchFolders = metroConfig.watchFolders.filter(w => w.match(/domain|node_modules/));
+const androidAssetsResolutionFix = getMetroAndroidAssetsResolutionFix();
 
-module.exports = {
-  watchFolders,
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: true,
+const watchFolders = monorepoMetroTools.watchFolders.filter(w =>
+  w.match(/domain|node_modules/),
+);
+
+module.exports = (async () => {
+  const {
+    resolver: {sourceExts, assetExts},
+  } = await getDefaultConfig(__dirname);
+  return {
+    transformer: {
+      babelTransformerPath: require.resolve('react-native-svg-transformer'),
+      getTransformOptions: async () => ({
+        transform: {
+          experimentalImportSupport: false,
+          inlineRequires: true,
+        },
+      }),
+    },
+    server: {
+      // ...and to the server middleware.
+      enhanceMiddleware: middleware => {
+        return androidAssetsResolutionFix.applyMiddleware(middleware);
       },
-    }),
-  },
-};
+    },
+    watchFolders,
+    resolver: {
+      assetExts: assetExts.filter(ext => ext !== 'svg'),
+      sourceExts: [...sourceExts, 'svg'],
+      blockList: exclusionList(monorepoMetroTools.blockList),
+      extraNodeModules: monorepoMetroTools.extraNodeModules,
+    },
+  };
+})();

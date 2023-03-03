@@ -1,5 +1,3 @@
-import {v4 as uuid} from 'uuid';
-
 import {ModalId} from '@app/services/modal/ModalId';
 import {BaseModalPayload, DialogLabels} from '@app/services/modal/types';
 
@@ -17,7 +15,7 @@ export const ErrorDialogPayload = {
     labels: DialogLabels<TLabel>;
     message?: string;
   }): ErrorDialogPayload<TLabel> => {
-    const id = ModalId.create(uuid());
+    const id = ModalId.create(new Date().getTime().toString());
     return {
       id,
       labels: args.labels,

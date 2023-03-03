@@ -1,4 +1,4 @@
-import {createValidatorFactory} from '@app/lib/validations/validator';
+import {createValidatorFactory} from './validator';
 
 export const required = createValidatorFactory<void>({
   message: '必須項目です',

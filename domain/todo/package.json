@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "luxon": "^2.4.0",
-    "react-hook-form": "^7.31.1"
+    "form": "*"
   },
   "devDependencies": {
     "@types/luxon": "^2.3.2",

@@ -1,17 +1,18 @@
 import {FieldErrors, FieldValues, Resolver} from 'react-hook-form';
 
-import {required} from '@app/lib/validations/rules';
+
+import {required} from './rules';
 import {
   FieldValuesBySchema,
   RequiredOption,
   ValidationSchema,
-  ValueObjectFieldValues,
-} from '@app/lib/validations/types';
+  FieldValuesByValueObjectReturnValue, ValidationSchemaRulesMessages,
+} from './types';
 import {
   createValidatorFromValueObject,
   validate,
   Validator,
-} from '@app/lib/validations/validator';
+} from './validator';
 
 export function hasMessageRequiredOption(
   value: RequiredOption
@@ -22,23 +23,27 @@ export function hasMessageRequiredOption(
 export function createFormResolver<
   TSchema extends ValidationSchema<TFields>,
   TFields extends FieldValues = FieldValuesBySchema<TSchema>,
-  TValueObjectFieldValues extends FieldValues = ValueObjectFieldValues<TFields>
->(schema: TSchema): Resolver<TValueObjectFieldValues> {
+  TValueObjectFieldValues extends FieldValues = FieldValuesByValueObjectReturnValue<TFields>
+>(schema: TSchema, fieldsErrors?: ValidationSchemaRulesMessages<TFields>): Resolver<TValueObjectFieldValues> {
   return async (values) => {
     const errors = Object.keys(schema).reduce<FieldErrors<TFields>>(
       (acc, key) => {
         let itemRules: Validator[] = [];
         const field = schema[key] || {};
         if (field.required) {
-          hasMessageRequiredOption(field.required)
-            ? itemRules.push(required(field.required.message))
-            : itemRules.push(required());
+          if (fieldsErrors && fieldsErrors[key]) {
+              itemRules.push(required(fieldsErrors[key]?.required))
+          } else {
+            hasMessageRequiredOption(field.required)
+              ? itemRules.push(required(field.required.message))
+              : itemRules.push(required());
+          }
         }
         if ('valueObject' in field) {
           itemRules = [
             ...itemRules,
             ...createValidatorFromValueObject({
-              messages: field.ruleMessages || {},
+              messages: ((fieldsErrors && fieldsErrors[key]) || field.ruleMessages || {}) as any,
               valueObject: field.valueObject,
             }),
           ];

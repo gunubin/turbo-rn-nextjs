@@ -1,6 +1,5 @@
+import {InputProps} from 'form';
 import React, {InputHTMLAttributes} from 'react';
-
-import {InputProps} from '@app/lib/validations/types';
 
 
 type Props = {field: InputProps} & InputHTMLAttributes<HTMLInputElement>;

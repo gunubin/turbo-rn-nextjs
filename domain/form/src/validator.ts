@@ -75,7 +75,7 @@ export function validate(
       if (typeof validator.message === 'string') {
         return validator.message;
       }
-      return validator.message(validator.params);
+      return validator.message?.(validator.params);
     })(),
     type: validator.type,
   };

@@ -5,8 +5,8 @@ export const defineValueObject = <
   TCreate extends (val: any) => any,
   TRules extends Rule<any>[]
 >({
-  rules,
   create,
+  rules,
 }: {
   create: TCreate;
   rules: TRules;

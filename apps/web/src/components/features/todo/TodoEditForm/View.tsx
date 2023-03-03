@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Fields} from '@app/lib/validations/types';
+import {Fields} from 'form';
 import {FormValues} from '@todo/forms/addTodo';
 
 type Props = {
@@ -29,6 +29,13 @@ export const TodoEditForm: React.FC<Props> = ({fields, onPressButton}) => {
           Todo編集
         </button>
       </div>
+      <div>
+        {fields.title.error?.message}
+      </div>
+      <div>
+        {fields.description?.error?.message}
+      </div>
+
     </>
   );
 };

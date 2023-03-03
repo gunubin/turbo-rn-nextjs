@@ -1,4 +1,5 @@
-import {createSchema} from '@app/lib/validations/schema';
+import {createSchema} from 'form';
+
 import {TodoTitle} from '@todo/domain/todo/TodoTitle';
 
 export type FormValues = {
@@ -11,7 +12,7 @@ export const addTodoSchema = createSchema<FormValues>({
     required: false,
   },
   title: {
-    required: {message: ''},
+    required: true,
     ruleMessages: {
       maxLength: '100文字以下で入力してください',
     },

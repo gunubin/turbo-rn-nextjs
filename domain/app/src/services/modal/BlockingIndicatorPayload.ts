@@ -1,5 +1,3 @@
-import {v4 as uuid} from 'uuid';
-
 import {ModalId} from '@app/services/modal/ModalId';
 import {BaseModalPayload} from '@app/services/modal/types';
 
@@ -14,7 +12,7 @@ export const BlockingIndicatorPayload = {
     initialId?: string,
     isShowHeaderNavigation?: boolean
   ): BlockingIndicatorPayload => {
-    const id = initialId ?? ModalId.create(uuid());
+    const id = initialId ?? ModalId.create(new Date().getTime().toString());
     return {
       id,
       isShowHeaderNavigation,

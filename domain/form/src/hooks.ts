@@ -7,23 +7,37 @@ import {
   UseFormProps,
 } from 'react-hook-form';
 
-import {createFormResolver} from '@app/lib/validations/schema';
+import {createFormResolver} from './schema';
 import {
   Fields,
   FieldValuesBySchema,
+  FieldValuesByValueObjectReturnValue,
   ValidationSchema,
-  ValueObjectFieldValues,
-} from '@app/lib/validations/types';
+  ValidationSchemaRulesMessages,
+} from './types';
+
+
+type Options<TFieldValues extends FieldValues> = Pick<
+  UseFormProps<FieldValuesByValueObjectReturnValue<TFieldValues>>,
+  'defaultValues'
+> & {
+  rulesMessages?: ValidationSchemaRulesMessages<TFieldValues>;
+};
 
 export function useForm<
   TSchema extends ValidationSchema<TFieldValues>,
-  TFieldValues extends FieldValues = FieldValuesBySchema<TSchema>,
-  TValueObjectFieldValues extends FieldValues = ValueObjectFieldValues<TFieldValues>
+  TFieldValues extends FieldValues = FieldValuesBySchema<TSchema>
 >(
   schema: TSchema,
-  options?: Pick<UseFormProps<TValueObjectFieldValues>, 'defaultValues'>
+  options?: Options<
+    FieldValuesBySchema<TSchema> /* MEMO: TFieldValuesでextendsが解決できない */
+  >
 ) {
-  // Call react-hook-form
+  const {defaultValues, rulesMessages} = options || {};
+  const resolver = React.useMemo(
+    () => createFormResolver(schema as ValidationSchema<any>, rulesMessages),
+    [schema, rulesMessages]
+  );
   const {
     setValue,
     watch,
@@ -31,28 +45,22 @@ export function useForm<
     formState: {isValid, errors},
     handleSubmit,
   } = useReactHookForm({
-    ...options,
+    defaultValues,
     mode: 'onChange',
     reValidateMode: 'onChange',
-    resolver: createFormResolver(
-      schema as ValidationSchema<any> /*fixme: types*/
-    ),
+    resolver,
   });
 
-  // Get all values
   const values = watch();
-
   const fieldProps = React.useMemo(
     () =>
-      (Object.keys(schema) as FieldPath<TValueObjectFieldValues>[]).reduce<
-        Fields<TValueObjectFieldValues>
+      (Object.keys(schema) as FieldPath<TFieldValues>[]).reduce<
+        Fields<TFieldValues>
       >((acc, name) => {
-        const error = {
-          ...errors[name],
-        } as FieldError;
+        const error = {...errors[name]} as FieldError;
         const hasError = !!error?.message;
 
-        const reg = register(name as FieldPath<TValueObjectFieldValues>);
+        const reg = register(name as any);
         return {
           ...acc,
           [name]: {
@@ -61,7 +69,7 @@ export function useForm<
             ...reg,
           },
         };
-      }, {} as Fields<TValueObjectFieldValues>),
+      }, {} as Fields<TFieldValues>),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [register, schema, errors, Object.keys(errors)]
   );
