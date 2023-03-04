@@ -1,6 +1,6 @@
 import {AxiosRequestConfig, AxiosRequestHeaders} from 'axios';
 
-import {APIClient} from '@app/api/APIClient';
+import {APIClient} from '@domain/app/api/APIClient';
 
 export class APIClientFactory {
   static instance: APIClientFactory;

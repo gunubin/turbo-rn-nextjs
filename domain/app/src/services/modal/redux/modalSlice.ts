@@ -5,9 +5,13 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 
-import {ModalId} from '@app/services/modal/ModalId';
-import {ModalPayload} from '@app/services/modal/types';
-import {AppState} from '@app/services/redux/appReducer';
+import {ErrorDialogPayload} from '@domain/app/models/modal/ErrorDialogPayload';
+import {MessageDialogPayload} from '@domain/app/models/modal/MessageDialogPayload';
+import {ModalId} from '@domain/app/models/modal/ModalId';
+import {AppState} from '@domain/app/services/redux/appReducer';
+
+// TODO: ErrorDialog
+export type ModalPayload = MessageDialogPayload | ErrorDialogPayload;
 
 const modalEntityAdapter = createEntityAdapter<ModalPayload>();
 

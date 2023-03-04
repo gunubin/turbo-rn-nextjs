@@ -1,8 +1,8 @@
 import {Dispatch} from '@reduxjs/toolkit';
 
-import {MessageDialogPayload} from '@app/services/modal/MessageDialogPayload';
-import {ModalId} from '@app/services/modal/ModalId';
-import {modalPromiseMiddleware} from '@app/services/modal/redux/modalPromiseMiddleware';
+import {MessageDialogPayload} from '@domain/app/model/modal/MessageDialogPayload';
+import {ModalId} from '@domain/app/model/modal/ModalId';
+import {modalPromiseMiddleware} from '@domain/app/services/modal/redux/modalPromiseMiddleware';
 
 import {actions} from '../modalSlice';
 

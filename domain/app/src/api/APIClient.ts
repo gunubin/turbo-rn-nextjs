@@ -4,7 +4,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios';
 
-import {ApiClientConfig, Method} from '@app/api/types';
+import {ApiClientConfig, Method} from '@domain/app/api/types';
 
 export class APIClient {
   static create(apiBaseUrl: string) {

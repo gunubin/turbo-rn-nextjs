@@ -1,5 +1,5 @@
-const react = ['./rules/react'].map(require.resolve)
-const es = ['./rules/es'].map(require.resolve)
+const es = require.resolve('./es');
+const react = require.resolve('./react');
 
 module.exports = {
   overrides: [

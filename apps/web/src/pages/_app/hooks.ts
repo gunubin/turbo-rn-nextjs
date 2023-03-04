@@ -1,6 +1,6 @@
 // import {useEffect} from 'react';
 
-// import {useSystemInitializeUseCase} from '@app/useCases/systemInitializeUseCase';
+// import {useSystemInitializeUseCase} from '@domain/app/useCases/systemInitializeUseCase';
 
 export const useAppPage = () => {
   // const [systemInitialize] = useSystemInitializeUseCase();

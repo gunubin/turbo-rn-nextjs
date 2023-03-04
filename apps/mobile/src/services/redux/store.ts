@@ -1,8 +1,8 @@
 import {configureStore as rtkConfigureStore} from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
-import {modalPromiseMiddleware} from '@app/services/modal/redux/modalPromiseMiddleware';
-import {appApi} from '@app/services/redux/appApi';
+import {modalPromiseMiddleware} from '@domain/app/services/modal/redux/modalPromiseMiddleware';
+import {appApi} from '@domain/app/services/redux/appApi';
 
 import rootReducer from '@/services/redux/rootReducer';
 

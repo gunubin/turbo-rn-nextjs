@@ -2,20 +2,20 @@ import {UseQuery} from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import {QueryDefinition} from '@reduxjs/toolkit/query';
 import {useMemo, useState} from 'react';
 
-import {ApiError} from '@app/api/ApiError';
-import {useErrorDisplay} from '@app/hooks/error';
-import {useIndicator} from '@app/hooks/indicator';
-import {ErrorDisplayType} from '@app/lib/error/types';
-import {createUseCaseState} from '@app/lib/useCase/useCaseState';
-import {createErrorManager} from '@app/services/error/ErrorManager';
+import {ApiError} from '@domain/app/api/ApiError';
+import {useErrorDisplay} from '@domain/app/hooks/error';
+import {useIndicator} from '@domain/app/hooks/indicator';
+import {ErrorDisplayType} from '@domain/app/lib/error/types';
+import {createUseCaseState} from '@domain/app/lib/useCase/useCaseState';
+import {createErrorManager} from '@domain/app/services/error/ErrorManager';
 import {
   transformApplicationError,
   transformNetworkError,
-} from '@app/services/error/errors';
+} from '@domain/app/services/error/errors';
 import {
   applicationErrorHandler,
   networkErrorHandler,
-} from '@app/services/error/handlers';
+} from '@domain/app/services/error/handlers';
 
 type UseCase<TParams, TResult> = (
   params: TParams

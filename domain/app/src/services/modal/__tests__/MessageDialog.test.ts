@@ -1,6 +1,6 @@
-import {createMessageDialog} from '@app/services/modal/MessageDialog';
-import {modalSelectors} from '@app/services/modal/redux/modalSlice';
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
+import {createMessageDialog} from '@domain/app/services/modal/MessageDialog';
+import {modalSelectors} from '@domain/app/services/modal/redux/modalSlice';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 
 import {createMockStore} from '../../../../__fixtures__/createMockStore';
 import {createBlockingIndicator} from '../BlockingIndicator';

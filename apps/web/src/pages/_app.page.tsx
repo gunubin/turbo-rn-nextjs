@@ -4,8 +4,8 @@ import type {AppProps} from 'next/app';
 import {ReactElement, ReactNode} from 'react';
 import {Provider} from 'react-redux';
 
-import {EnvironmentService} from '@app/services/EnvironmentService';
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
+import {EnvironmentService} from '@domain/app/services/EnvironmentService';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 
 import {ConnectedBlockingIndicator} from '@/components/features/modal/BlockingIndicator';
 import {ConnectedModal} from '@/components/features/modal/MessageDialog';

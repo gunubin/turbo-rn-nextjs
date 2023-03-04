@@ -2,10 +2,10 @@
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@app/*": [
+      "@domain/app/*": [
         "../../domain/app/src/*"
       ],
-      "@todo/*": [
+      "@domaintodo/*": [
         "../../domain/todo/src/*"
       ],
       "@/*": [

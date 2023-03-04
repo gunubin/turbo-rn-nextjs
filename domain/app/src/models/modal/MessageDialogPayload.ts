@@ -1,5 +1,9 @@
-import {ModalId} from '@app/services/modal/ModalId';
-import {BaseModalPayload, DialogLabels} from '@app/services/modal/types';
+import {ModalId} from '@domain/app/models/modal/ModalId';
+import {BaseModalPayload} from '@domain/app/services/modal/types';
+
+export type DialogLabels<TLabel = string> =
+  | readonly [TLabel, TLabel]
+  | readonly [TLabel];
 
 export type MessageDialogType = 'normal' | 'success';
 export type MessageDialogPayload<TLabel = string> = BaseModalPayload & {

@@ -1,7 +1,7 @@
 import {createEntityAdapter, createSlice} from '@reduxjs/toolkit';
 
-import {AppState} from '@app/services/redux/appReducer';
-import {ToastStatus} from '@app/services/toast/types';
+import {ToastStatus} from '@domain/app/models/toast/ToastItem';
+import {AppState} from '@domain/app/services/redux/appReducer';
 
 type ToastState = {
   id: string;

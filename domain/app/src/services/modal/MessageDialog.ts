@@ -1,10 +1,11 @@
 import {
+  DialogLabels,
   MessageDialogPayload,
   MessageDialogType,
-} from '@app/services/modal/MessageDialogPayload';
-import {actions} from '@app/services/modal/redux/modalSlice';
-import {IMessageDialog, DialogLabels} from '@app/services/modal/types';
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
+} from '@domain/app/models/modal/MessageDialogPayload';
+import {actions} from '@domain/app/services/modal/redux/modalSlice';
+import {IMessageDialog} from '@domain/app/services/modal/types';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 
 /**
  * Modal that overlay screen

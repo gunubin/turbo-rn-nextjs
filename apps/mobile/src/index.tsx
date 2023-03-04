@@ -4,8 +4,8 @@ import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 
-import {EnvironmentService} from '@app/services/EnvironmentService';
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
+import {EnvironmentService} from '@domain/app/services/EnvironmentService';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 
 import {ConnectedModal} from '@/components/features/modal';
 import {ConnectedBlockingIndicator} from '@/components/features/modal/BlockingIndicator';

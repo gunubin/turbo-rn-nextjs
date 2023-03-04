@@ -1,12 +1,7 @@
-export type ToastStatus = 'Success' | 'Error';
-
-export type Toast = {
-  message: string;
-  status?: ToastStatus;
-};
+import {ToastItem} from '@domain/app/models/toast/ToastItem';
 
 export interface IToastManager {
-  show(params: Toast): void;
+  show(params: ToastItem): void;
 
   hide(id: string): void;
 }

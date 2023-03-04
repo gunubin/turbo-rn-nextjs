@@ -1,3 +1,4 @@
+
 import {
   createSlice,
   createEntityAdapter,
@@ -12,8 +13,8 @@ import {
   UseCaseEvent,
   UseCaseEventFailed,
   UseCaseEventSucceeded,
-} from '@app/lib/useCase/types';
-import {AppState} from '@app/services/redux/appReducer';
+} from '@domain/app/lib/useCase/types';
+import {AppState} from '@domain/app/services/redux/appReducer';
 
 // commandの実行時系列を把握したいならIDはランダムにしてname prop追加したほうがいい
 type UseCaseEntity = {

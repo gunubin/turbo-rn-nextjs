@@ -1,9 +1,9 @@
-import {createUseCaseFactory} from '@app/lib/useCase/utils';
-import {createMessageDialog} from '@app/services/modal/MessageDialog';
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
-import {TodoId} from '@todo/domain/todo/TodoId';
-import {useTodoList} from '@todo/services/todo/TodoList';
-import {todoApi} from '@todo/services/todo/redux/todoApi';
+import {createUseCaseFactory} from '@domain/app/lib/useCase/utils';
+import {createMessageDialog} from '@domain/app/services/modal/MessageDialog';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
+import {TodoId} from '@domain/todo/models/todo/TodoId';
+import {useTodoList} from '@domain/todo/services/todo/TodoList';
+import {todoApi} from '@domain/todo/services/todo/redux/todoApi';
 
 type Params = {
   id: TodoId;

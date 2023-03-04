@@ -27,7 +27,7 @@ module.exports = {
         /* TODO: dir増えるごとに編集するの面倒 */
         pathGroups: [
           {
-            pattern: '@{app,todo}/**',
+            pattern: '@domain/**',
             group: 'internal',
             position: 'before',
           },

@@ -1,5 +1,6 @@
-import {ModalId} from '@app/services/modal/ModalId';
-import {BaseModalPayload, DialogLabels} from '@app/services/modal/types';
+import {DialogLabels} from '@domain/app/models/modal/MessageDialogPayload';
+import {ModalId} from '@domain/app/models/modal/ModalId';
+import {BaseModalPayload} from '@domain/app/services/modal/types';
 
 export type ErrorDialogPayload<TLabel = string> = BaseModalPayload & {
   type: 'errorDialog';

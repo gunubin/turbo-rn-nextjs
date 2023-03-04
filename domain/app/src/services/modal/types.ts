@@ -1,20 +1,14 @@
-import {ErrorDialogPayload} from '@app/services/modal/ErrorDialogPayload';
 import {
-  MessageDialogPayload,
+  DialogLabels,
   MessageDialogType,
-} from '@app/services/modal/MessageDialogPayload';
-import {ModalId} from '@app/services/modal/ModalId';
+} from '@domain/app/models/modal/MessageDialogPayload';
+import {ModalId} from '@domain/app/models/modal/ModalId';
 
 export type BaseModalPayload = {
   id: ModalId;
 };
 
-export type DialogLabels<TLabel = string> =
-  | readonly [TLabel, TLabel]
-  | readonly [TLabel];
 
-// TODO: ErrorDialog
-export type ModalPayload = MessageDialogPayload | ErrorDialogPayload;
 
 export interface IMessageDialog {
   show<TLabel extends string>(params: {

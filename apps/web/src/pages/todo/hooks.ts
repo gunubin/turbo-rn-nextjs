@@ -1,8 +1,8 @@
 import {useRouter} from 'next/router';
 import {useSelector} from 'react-redux';
 
-import {TodoId} from '@todo/domain/todo/TodoId';
-import {todoApi} from '@todo/services/todo/redux/todoApi';
+import {TodoId} from '@domain/todo/models/todo/TodoId';
+import {todoApi} from '@domain/todo/services/todo/redux/todoApi';
 
 export const useTodoDetailPage = () => {
   const {

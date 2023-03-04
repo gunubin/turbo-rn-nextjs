@@ -1,4 +1,4 @@
-import {TodoId} from '@todo/domain/todo/TodoId';
+import {TodoId} from '@domain/todo/models/todo/TodoId';
 
 export type TodoStatus = 'pending' | 'done' | 'trash';
 

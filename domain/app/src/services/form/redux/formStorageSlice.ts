@@ -1,6 +1,6 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {AppState} from '@app/services/redux/appReducer';
+import {AppState} from '@domain/app/services/redux/appReducer';
 
 import {
   FormStorageEntities,

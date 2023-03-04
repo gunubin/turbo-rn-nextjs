@@ -1,6 +1,6 @@
 import {AnyAction, Middleware} from '@reduxjs/toolkit';
 
-import {actions} from '@app/services/modal/redux/modalSlice';
+import {actions} from '@domain/app/services/modal/redux/modalSlice';
 
 type Resolver = (result: string) => void;
 type DialogPromiseDispatch = (action: AnyAction) => Promise<any>;

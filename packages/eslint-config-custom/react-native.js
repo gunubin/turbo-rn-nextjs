@@ -1,10 +1,10 @@
-const ext = ['./rules/import'].map(require.resolve);
+const rules = ['./rules/import', './rules/jsdoc'].map(require.resolve)
 
 module.exports = {
   overrides: [
     {
       files: ['**/*.ts?(x)'],
-      extends: ['@react-native-community', ...ext],
+      extends: ['@react-native-community', ...rules],
       plugins: ['react-native'],
       rules: {
         'react-native/no-unused-styles': 'error',

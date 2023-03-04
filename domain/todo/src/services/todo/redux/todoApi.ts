@@ -1,6 +1,6 @@
-import {appApi} from '@app/services/redux/appApi';
-import {Todo} from '@todo/domain/todo/Todo';
-import {TodoId} from '@todo/domain/todo/TodoId';
+import {appApi} from '@domain/app/services/redux/appApi';
+import {Todo} from '@domain/todo/models/todo/Todo';
+import {TodoId} from '@domain/todo/models/todo/TodoId';
 
 export const todoApi = appApi.injectEndpoints({
   endpoints: (builder) => ({

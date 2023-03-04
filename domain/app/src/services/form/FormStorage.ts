@@ -1,4 +1,4 @@
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 
 import {actions, formSelectors} from './redux/formStorageSlice';
 import {FormStorageEntity, FormStorageName, IFormStorage} from './types';

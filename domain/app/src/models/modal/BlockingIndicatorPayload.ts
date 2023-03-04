@@ -1,5 +1,5 @@
-import {ModalId} from '@app/services/modal/ModalId';
-import {BaseModalPayload} from '@app/services/modal/types';
+import {ModalId} from '@domain/app/models/modal/ModalId';
+import {BaseModalPayload} from '@domain/app/services/modal/types';
 
 export type BlockingIndicatorPayload = BaseModalPayload & {
   type: 'blockingIndicator';

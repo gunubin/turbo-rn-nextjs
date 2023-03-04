@@ -1,7 +1,7 @@
 import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import {useCallback, useLayoutEffect, useMemo} from 'react';
 
-import {createBlockingIndicator} from '@app/services/modal/BlockingIndicator';
+import {createBlockingIndicator} from '@domain/app/services/modal/BlockingIndicator';
 
 type Options = {
   indicatorId?: string;

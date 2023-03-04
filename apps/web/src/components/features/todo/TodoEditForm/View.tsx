@@ -1,7 +1,7 @@
-import {Fields} from '../../../../../../../packages/form';
+import {Fields} from 'form';
 import React from 'react';
 
-import {FormValues} from '@todo/forms/addTodo';
+import {FormValues} from '@domain/todo/forms/addTodo';
 
 type Props = {
   fields: Fields<FormValues>;

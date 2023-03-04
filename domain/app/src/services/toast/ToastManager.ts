@@ -1,6 +1,6 @@
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
-import {actions} from '@app/services/toast/redux/toastSlice';
-import {IToastManager} from '@app/services/toast/types';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
+import {actions} from '@domain/app/services/toast/redux/toastSlice';
+import {IToastManager} from '@domain/app/services/toast/types';
 
 let toastIndex = 0;
 

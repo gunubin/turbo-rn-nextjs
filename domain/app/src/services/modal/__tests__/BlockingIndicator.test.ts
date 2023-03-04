@@ -1,5 +1,5 @@
-import {indicatorSelectors} from '@app/services/modal/redux/indicatorSlice';
-import {ReduxProvider} from '@app/services/redux/ReduxProvider';
+import {indicatorSelectors} from '@domain/app/services/modal/redux/indicatorSlice';
+import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 
 import {createMockStore} from '../../../../__fixtures__/createMockStore';
 import {createBlockingIndicator} from '../BlockingIndicator';

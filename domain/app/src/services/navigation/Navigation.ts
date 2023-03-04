@@ -1,6 +1,6 @@
 import {useRouter} from 'next/router';
 
-import {INavigation, WebParamList} from '@app/services/navigation/types';
+import {INavigation, WebParamList} from '@domain/app/services/navigation/types';
 
 export const useNavigation = (): INavigation<WebParamList> => {
   const router = useRouter();

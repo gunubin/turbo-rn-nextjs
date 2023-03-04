@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {Todo} from '@todo/domain/todo/Todo';
-import {TodoId} from '@todo/domain/todo/TodoId';
+import {Todo} from '@domain/todo/models/todo/Todo';
+import {TodoId} from '@domain/todo/models/todo/TodoId';
 
 import {TodoListItem} from '@/components/features/todo/TodoListItem';
 

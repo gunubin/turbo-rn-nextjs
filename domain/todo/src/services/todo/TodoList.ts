@@ -1,9 +1,9 @@
-import {ITodoListService} from '@todo/domain/todo/types';
+import {ITodoListService} from '@domain/todo/models/todo/types';
 import {
   useCreateTodoMutation,
   useDeleteTodoMutation,
   useUpdateTodoMutation,
-} from '@todo/services/todo/redux/todoApi';
+} from '@domain/todo/services/todo/redux/todoApi';
 
 export const useTodoList = (): ITodoListService => {
   const [createTodo] = useCreateTodoMutation();

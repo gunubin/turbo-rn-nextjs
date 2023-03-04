@@ -1,4 +1,6 @@
-import {BaseError} from '@app/lib/error/types';
+import {BaseError} from '@domain/app/models/error/BaseError';
+
+export type ErrorDisplayType = 'toast' | 'dialog';
 
 type ErrorDialogAction = undefined | (() => void);
 
@@ -15,8 +17,6 @@ export type ErrorToastPayload = {
 };
 
 export type ErrorPayload = ErrorDialogPayload | ErrorToastPayload;
-
-export type ErrorDisplayType = ErrorPayload['displayType'];
 
 export type ErrorHandler<E extends BaseError> = (
   error: E

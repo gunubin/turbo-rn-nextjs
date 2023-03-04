@@ -1,5 +1,5 @@
-import {ApiError} from '@app/api/ApiError';
-import {BaseError} from '@app/lib/error/types';
+import {ApiError} from '@domain/app/api/ApiError';
+import {BaseError} from '@domain/app/models/error/BaseError';
 
 export type AppError = BaseError<'App'>;
 

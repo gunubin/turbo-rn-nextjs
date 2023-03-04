@@ -1,4 +1,4 @@
-const ext = ['./base', './import'].map(require.resolve);
+const rules = ['./rules/base', './rules/import', './rules/jsdoc'].map(require.resolve);
 
 module.exports = {
   env: {
@@ -13,7 +13,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'prettier',
-    ...ext,
+    ...rules,
   ],
   plugins: ['react-hooks'],
   rules: {

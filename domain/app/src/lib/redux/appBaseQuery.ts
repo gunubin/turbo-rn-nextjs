@@ -1,9 +1,9 @@
 import {BaseQueryFn} from '@reduxjs/toolkit/query';
 import {AxiosError} from 'axios';
 
-import {APIClientFactory} from '@app/api/APIClientFactory';
-import {ApiError} from '@app/api/ApiError';
-import {ApiClientConfig} from '@app/api/types';
+import {APIClientFactory} from '@domain/app/api/APIClientFactory';
+import {ApiError} from '@domain/app/api/ApiError';
+import {ApiClientConfig} from '@domain/app/api/types';
 
 export const appBaseQuery =
   (getBaseUrl: () => string): BaseQueryFn<ApiClientConfig, unknown, unknown> =>

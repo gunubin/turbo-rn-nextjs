@@ -1,4 +1,4 @@
-import {MessageDialogPayload} from '@app/services/modal/MessageDialogPayload';
+import {MessageDialogPayload} from '@domain/app/model/modal/MessageDialogPayload';
 
 import reducer, {actions} from '../modalSlice';
 

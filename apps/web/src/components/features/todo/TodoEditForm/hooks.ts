@@ -1,14 +1,14 @@
-import {useForm} from '../../../../../../../packages/form';
+import {useForm} from 'form';
 import {useRouter} from 'next/router';
 import {useEffect, useMemo} from 'react';
 
-import {useIndicator} from '@app/hooks/indicator';
-import {createQuery} from '@app/lib/useCase/utils';
-import {Todo} from '@todo/domain/todo/Todo';
-import {TodoId} from '@todo/domain/todo/TodoId';
-import {addTodoSchema} from '@todo/forms/addTodo';
-import {useGetTodoQuery} from '@todo/services/todo/redux/todoApi';
-import {useUpdateTodoUseCase} from '@todo/useCases/todo/updateTodoUseCase';
+import {useIndicator} from '@domain/app/hooks/indicator';
+import {createQuery} from '@domain/app/lib/useCase/utils';
+import {addTodoSchema} from '@domain/todo/forms/addTodo';
+import {Todo} from '@domain/todo/models/todo/Todo';
+import {TodoId} from '@domain/todo/models/todo/TodoId';
+import {useGetTodoQuery} from '@domain/todo/services/todo/redux/todoApi';
+import {useUpdateTodoUseCase} from '@domain/todo/useCases/todo/updateTodoUseCase';
 
 export const useTodoEditForm = () => {
   const {

@@ -1,4 +1,4 @@
-import {createUseCaseFactory} from '@app/lib/useCase/utils';
+import {createUseCaseFactory} from '@domain/app/lib/useCase/utils';
 
 export const useSystemInitializeUseCase = createUseCaseFactory(
   () => {

@@ -1,13 +1,13 @@
-import {ApiError} from '@app/api/ApiError';
-import {BaseError} from '@app/lib/error/types';
+import {ApiError} from '@domain/app/api/ApiError';
+import {BaseError} from '@domain/app/models/error/BaseError';
+import {DialogLabels} from '@domain/app/models/modal/MessageDialogPayload';
 import {
   ErrorHandler,
   ErrorPayload,
   IErrorManager,
-} from '@app/services/error/types';
-import {createMessageDialog} from '@app/services/modal/MessageDialog';
-import {DialogLabels} from '@app/services/modal/types';
-import {createToastManger} from '@app/services/toast/ToastManager';
+} from '@domain/app/services/error/types';
+import {createMessageDialog} from '@domain/app/services/modal/MessageDialog';
+import {createToastManger} from '@domain/app/services/toast/ToastManager';
 
 const DEFAULT_ERROR_MESSAGE = 'アプリでエラーが発生しました。';
 const getErrorMessage = (error: BaseError, payload: ErrorPayload): string => {

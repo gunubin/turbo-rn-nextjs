@@ -1,6 +1,6 @@
 import {createSchema} from 'form';
 
-import {TodoTitle} from '@todo/domain/todo/TodoTitle';
+import {TodoTitle} from '@domain/todo/models/todo/TodoTitle';
 
 export type FormValues = {
   title: typeof TodoTitle;

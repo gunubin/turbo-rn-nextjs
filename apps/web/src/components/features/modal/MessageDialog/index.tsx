@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 
-import {createMessageDialog} from '@app/services/modal/MessageDialog';
-import {MessageDialogPayload} from '@app/services/modal/MessageDialogPayload';
-import {modalSelectors} from '@app/services/modal/redux/modalSlice';
+import {createMessageDialog} from '@domain/app/services/modal/MessageDialog';
+import {MessageDialogPayload} from '@domain/app/model/modal/MessageDialogPayload';
+import {modalSelectors} from '@domain/app/services/modal/redux/modalSlice';
 
 import {Dialog} from '@/components/features/modal/Dialog';
 import {MessageDialog} from '@/components/features/modal/MessageDialog/View';

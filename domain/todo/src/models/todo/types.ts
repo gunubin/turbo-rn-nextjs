@@ -1,5 +1,5 @@
-import {Todo} from '@todo/domain/todo/Todo';
-import {TodoId} from '@todo/domain/todo/TodoId';
+import {Todo} from '@domain/todo/models/todo/Todo';
+import {TodoId} from '@domain/todo/models/todo/TodoId';
 
 export interface ITodoListService {
   add(params: {item: Todo}): void;

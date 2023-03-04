@@ -1,8 +1,8 @@
 import {useCallback} from 'react';
 import {useSelector} from 'react-redux';
 
-import {createToastManger} from '@app/services/toast/ToastManager';
-import {toastSelectors} from '@app/services/toast/redux/toastSlice';
+import {createToastManger} from '@domain/app/services/toast/ToastManager';
+import {toastSelectors} from '@domain/app/services/toast/redux/toastSlice';
 
 import {Type} from '@/components/ui/Toast/types';
 import {useTimeout} from '@/hooks/useIntervalOnScreenFocus';

@@ -1,11 +1,11 @@
 import {combineReducers, createStore} from '@reduxjs/toolkit';
 
-import useCaseReducer from '@app/lib/useCase/redux/useCaseSlice';
-import formStorageReducer from '@app/services/form/redux/formStorageSlice';
-import indicatorReducer from '@app/services/modal/redux/indicatorSlice';
-import modalReducer from '@app/services/modal/redux/modalSlice';
-import {appApi} from '@app/services/redux/appApi';
-import toastReducer from '@app/services/toast/redux/toastSlice';
+import useCaseReducer from '@domain/app/lib/useCase/redux/useCaseSlice';
+import formStorageReducer from '@domain/app/services/form/redux/formStorageSlice';
+import indicatorReducer from '@domain/app/services/modal/redux/indicatorSlice';
+import modalReducer from '@domain/app/services/modal/redux/modalSlice';
+import {appApi} from '@domain/app/services/redux/appApi';
+import toastReducer from '@domain/app/services/toast/redux/toastSlice';
 
 const rootReducer = combineReducers({
   [appApi.reducerPath]: appApi.reducer,

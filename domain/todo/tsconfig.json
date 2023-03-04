@@ -10,10 +10,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@todo/*": [
+      "@domain/todo/*": [
         "./src/*"
       ],
-      "@app/*": [
+      "@domain/app/*": [
         "../../domain/app/src/*"
       ]
     }

@@ -2,10 +2,10 @@
   "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
     "paths": {
-      "@app/*": [
+      "@domain/app/*": [
         "../../domain/app/src/*"
       ],
-      "@todo/*": [
+      "@domain/todo/*": [
         "../../domain/todo/src/*"
       ],
       "@/*": [

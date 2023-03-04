@@ -1,7 +1,7 @@
-const ext = ['./rules/import'].map(require.resolve)
+const rules = ['./rules/import', './rules/jsdoc'].map(require.resolve);
 
 module.exports = {
-  extends: ["next", "turbo", "prettier", ...ext],
+  extends: ["next", "turbo", "prettier", ...rules],
   rules: {
     "@next/next/no-html-link-for-pages": "off",
   },

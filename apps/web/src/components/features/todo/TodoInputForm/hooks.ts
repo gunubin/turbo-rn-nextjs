@@ -1,10 +1,10 @@
-import {useForm} from '../../../../../../../packages/form';
+import {useForm} from 'form';
 import {useMemo} from 'react';
 
-import {useIndicator} from '@app/hooks/indicator';
-import {Todo} from '@todo/domain/todo/Todo';
-import {addTodoSchema} from '@todo/forms/addTodo';
-import {useAddTodoUseCase} from '@todo/useCases/todo/addTodoUseCase';
+import {useIndicator} from '@domain/app/hooks/indicator';
+import {addTodoSchema} from '@domain/todo/forms/addTodo';
+import {Todo} from '@domain/todo/models/todo/Todo';
+import {useAddTodoUseCase} from '@domain/todo/useCases/todo/addTodoUseCase';
 
 export const useTodoInputForm = () => {
   const [addTodo, {isLoading}] = useAddTodoUseCase();
