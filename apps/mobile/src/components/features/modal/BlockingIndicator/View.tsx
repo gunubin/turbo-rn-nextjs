@@ -1,22 +1,22 @@
-import React, {useMemo} from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {Box, Heading, HStack, Spinner} from 'native-base';
+import React from 'react';
+import {View} from 'react-native';
 
-import {colors} from '@/styles';
-
-import {getBackdropStyles, styles} from './styles';
+import {backdropStyles} from './styles';
 import {Props} from './types';
 
 // TODO: animation
-export const BlockingIndicator: React.FC<Props> = ({headerHeight}) => {
-  const backdropStyles = useMemo(
-    () => getBackdropStyles(headerHeight || 0),
-    [headerHeight],
-  );
+export const BlockingIndicator: React.FC<Props> = () => {
   return (
     <View style={backdropStyles.backdrop}>
-      <View style={styles.background}>
-        <ActivityIndicator animating color={colors.semantic.blue} />
-      </View>
+      <Box rounded={10} bgColor="white" px="5" py="3">
+        <HStack space={2} justifyContent="center">
+          <Spinner accessibilityLabel="Loading posts" />
+          <Heading color="primary.500" fontSize="md">
+            Loading
+          </Heading>
+        </HStack>
+      </Box>
     </View>
   );
 };

@@ -4,7 +4,7 @@ import {useEffect, useMemo} from 'react';
 
 import {useIndicator} from '@domain/app/hooks/indicator';
 import {createQuery} from '@domain/app/lib/useCase/utils';
-import {addTodoSchema} from '@domain/todo/forms/addTodo';
+import {updateTodoSchema} from '@domain/todo/forms/updateTodo';
 import {Todo} from '@domain/todo/models/todo/Todo';
 import {TodoId} from '@domain/todo/models/todo/TodoId';
 import {useGetTodoQuery} from '@domain/todo/services/todo/redux/todoApi';
@@ -23,7 +23,7 @@ export const useTodoEditForm = () => {
 
   useIndicator(isLoading);
 
-  const {fields, isValid, handleSubmit, setValue} = useForm(addTodoSchema, {
+  const {fields, isValid, handleSubmit, setValue} = useForm(updateTodoSchema, {
     defaultValues: {
       description: item?.description,
       title: item?.title,
@@ -41,7 +41,7 @@ export const useTodoEditForm = () => {
         const item = Todo.create({
           description: values.description,
           id,
-          title: values.title || '',
+          title: values.title,
         });
         updateTodo({item});
       }),

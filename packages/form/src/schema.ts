@@ -5,69 +5,96 @@ import {
   FieldValuesBySchema,
   RequiredOption,
   ValidationSchema,
-  FieldValuesByValueObjectReturnValue,
+  ValidationSchemaProp,
   ValidationSchemaRulesMessages,
+  ValueObjectFieldValuesBySchema,
 } from './types';
 import {createValidatorFromValueObject, validate, Validator} from './validator';
 
 export function hasMessageRequiredOption(
   value: RequiredOption
-): value is {message: string} {
+): value is { message: string } {
   return typeof value === 'object';
 }
+
+const getRules = <TFieldValue extends ValidationSchemaProp<any>>(name: string, field: TFieldValue, fieldsErrors?: ValidationSchemaRulesMessages<any>) => {
+  let rules: Validator[] = [];
+  if (field.required) {
+    if (fieldsErrors && fieldsErrors[name]) {
+      rules.push(required(fieldsErrors[name]?.required));
+    } else {
+      hasMessageRequiredOption(field.required)
+        ? rules.push(required(field.required.message))
+        : rules.push(required());
+    }
+  }
+  if ('valueObject' in field) {
+    rules = [
+      ...rules,
+      ...createValidatorFromValueObject({
+        messages: ((fieldsErrors && fieldsErrors[name]) ||
+          field.ruleMessages ||
+          {}) as any,
+        valueObject: field.valueObject,
+      }),
+    ];
+  }
+  return rules;
+}
+
 
 export function createFormResolver<
   TSchema extends ValidationSchema<TFields>,
   TFields extends FieldValues = FieldValuesBySchema<TSchema>,
-  TValueObjectFieldValues extends FieldValues = FieldValuesByValueObjectReturnValue<TFields>
 >(
   schema: TSchema,
   fieldsErrors?: ValidationSchemaRulesMessages<TFields>
-): Resolver<TValueObjectFieldValues> {
-  return async (values) => {
-    const errors = Object.keys(schema).reduce<FieldErrors<TFields>>(
-      (acc, key) => {
-        let itemRules: Validator[] = [];
-        const field = schema[key] || {};
-        if (field.required) {
-          if (fieldsErrors && fieldsErrors[key]) {
-            itemRules.push(required(fieldsErrors[key]?.required));
-          } else {
-            hasMessageRequiredOption(field.required)
-              ? itemRules.push(required(field.required.message))
-              : itemRules.push(required());
-          }
-        }
-        if ('valueObject' in field) {
-          itemRules = [
-            ...itemRules,
-            ...createValidatorFromValueObject({
-              messages: ((fieldsErrors && fieldsErrors[key]) ||
-                field.ruleMessages ||
-                {}) as any,
-              valueObject: field.valueObject,
-            }),
-          ];
-        }
-        const value = values[key];
-        const results = itemRules
+): Resolver<ValueObjectFieldValuesBySchema<TSchema>> {
+  return async (values, _context, {fields, names}) => {
+    let errors: FieldErrors<TFields> = {};
+    // TODO: namesで分岐する必要ない説
+    // 一応編集時に編集項目だけバリデーションする動きなので無駄がない
+    if (names) {
+      // Validate only changed fields
+      errors = names.reduce<FieldErrors<TFields>>((acc, name) => {
+        const rules = getRules(name, schema[name], fieldsErrors)
+        const value = values[name];
+        const results = rules
           .map((rule) => validate(rule, value, values))
           .filter((v) => !v.isValid);
         const [{message = ''} = {}] = results;
         return {
           ...acc,
           ...(results.length > 0 && {
-            [key]: {
+            [name]: {
               message,
               type: 'validate',
             },
           }),
         };
-      },
-      {} as FieldErrors<TFields>
-    );
+      }, {})
+    } else {
+      // Validate all fields on submit event
+      errors = Object.entries(values).reduce((acc, [name, value]) => {
+        const rules = getRules(name, schema[name], fieldsErrors)
+        const results = rules
+          .map((rule) => validate(rule, value, values))
+          .filter((v) => !v.isValid);
+        const [{message = ''} = {}] = results;
+        return {
+          ...acc,
+          ...(results.length > 0 && {
+            [name]: {
+              message,
+              type: 'validate',
+            },
+          }),
+        };
+      }, {})
+    }
 
-    const valueObjectValues = Object.keys(schema).reduce<TFields>(
+    // FIXME: validな値しかValueObject.createできないはず
+    const valueObjectValues = Object.keys(fields).reduce<TFields>(
       (acc, key) => {
         const field = schema[key] || {};
         const value = values[key];
@@ -79,7 +106,6 @@ export function createFormResolver<
       },
       {} as TFields
     );
-
     const hasErrors = Object.keys(errors).length > 0;
     return {
       errors: hasErrors ? errors : {},

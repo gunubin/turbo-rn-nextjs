@@ -4,7 +4,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 
-import {BlockingIndicatorPayload} from '@domain/app/model/modal/BlockingIndicatorPayload';
+import {BlockingIndicatorPayload} from '@domain/app/models/modal/BlockingIndicatorPayload';
 import {AppState} from '@domain/app/services/redux/appReducer';
 
 const indicatorEntityAdapter = createEntityAdapter<BlockingIndicatorPayload>();

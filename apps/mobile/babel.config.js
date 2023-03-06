@@ -11,8 +11,8 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          '@app': `${__dirname}/../../domain/app/src`,
-          '@todo': `${__dirname}/../../domain/todo/src`,
+          '@domain/app': `${__dirname}/../../domain/app/src`,
+          '@domain/todo': `${__dirname}/../../domain/todo/src`,
           '@': `${__dirname}/src`,
         },
         extensions: ['.js', '.ts', '.tsx'],

@@ -1,11 +1,11 @@
 import {useCallback} from 'react';
 import {useSelector} from 'react-redux';
 
+import {useTimeout} from '@domain/app/hooks/timer';
 import {createToastManger} from '@domain/app/services/toast/ToastManager';
 import {toastSelectors} from '@domain/app/services/toast/redux/toastSlice';
 
 import {Type} from '@/components/ui/Toast/types';
-import {useTimeout} from '@/hooks/useIntervalOnScreenFocus';
 import {RootState} from '@/services/redux/rootReducer';
 
 export type Props = {

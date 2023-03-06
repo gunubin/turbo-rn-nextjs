@@ -2,9 +2,8 @@ import {useEffect, useRef} from 'react';
 
 /**
  * setTimeoutのhooks関数です。
- *
- * @param callback
- * @param ms
+ * @param callback - callback
+ * @param ms - ms
  */
 export const useTimeout = (callback: () => void, ms: number) => {
   const cb = useRef<() => void>();

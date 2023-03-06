@@ -4,11 +4,15 @@ import {TodoTitle} from '@domain/todo/models/todo/TodoTitle';
 
 export type FormValues = {
   title: typeof TodoTitle;
+  description: string;
 };
 
-export const addTodoSchema = createSchema<FormValues>({
+export const updateTodoSchema = createSchema<FormValues>({
+  description: {
+    required: false,
+  },
   title: {
-    required: {message: ''},
+    required: true,
     ruleMessages: {
       maxLength: '100文字以下で入力してください',
     },

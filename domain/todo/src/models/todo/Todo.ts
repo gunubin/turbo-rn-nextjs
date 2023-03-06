@@ -1,4 +1,5 @@
 import {TodoId} from '@domain/todo/models/todo/TodoId';
+import {TodoTitle} from '@domain/todo/models/todo/TodoTitle';
 
 export type TodoStatus = 'pending' | 'done' | 'trash';
 
@@ -6,7 +7,7 @@ export type Todo = {
   status: TodoStatus;
   createdAt: string;
   id: TodoId;
-  title: string;
+  title: TodoTitle;
   description?: string;
 } & {readonly brand: unique symbol};
 
@@ -18,7 +19,7 @@ export const Todo = {
     title,
   }: {
     id?: TodoId;
-    title: string;
+    title: TodoTitle;
     description?: string;
   }): Todo => {
     return {

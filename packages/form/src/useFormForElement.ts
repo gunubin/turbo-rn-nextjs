@@ -2,7 +2,7 @@ import React from 'react';
 import {
   FieldError,
   FieldPath,
-  FieldValues,
+  FieldValues, Path,
   useForm as useReactHookForm,
   UseFormProps,
 } from 'react-hook-form';
@@ -11,27 +11,22 @@ import {createFormResolver} from './schema';
 import {
   Fields,
   FieldValuesBySchema,
-  FieldValuesByValueObjectReturnValue,
   ValidationSchema,
   ValidationSchemaRulesMessages,
+  ValueObjectFieldValuesBySchema,
 } from './types';
 
-type Options<TFieldValues extends FieldValues> = Pick<
-  UseFormProps<FieldValuesByValueObjectReturnValue<TFieldValues>>,
+type Options<TSchema> = Pick<
+  UseFormProps<ValueObjectFieldValuesBySchema<TSchema>>,
   'defaultValues'
 > & {
-  rulesMessages?: ValidationSchemaRulesMessages<TFieldValues>;
+  rulesMessages?: ValidationSchemaRulesMessages<FieldValuesBySchema<TSchema>>;
 };
 
-export function useForm<
+export function useFormForElement<
   TSchema extends ValidationSchema<TFieldValues>,
   TFieldValues extends FieldValues = FieldValuesBySchema<TSchema>
->(
-  schema: TSchema,
-  options?: Options<
-    FieldValuesBySchema<TSchema> /* MEMO: TFieldValuesでextendsが解決できない */
-  >
-) {
+>(schema: TSchema, options?: Options<TSchema>) {
   const {defaultValues, rulesMessages} = options || {};
   const resolver = React.useMemo(
     () => createFormResolver(schema as ValidationSchema<any>, rulesMessages),
@@ -59,18 +54,17 @@ export function useForm<
         const error = {...errors[name]} as FieldError;
         const hasError = !!error?.message;
 
-        const reg = register(name as any);
+        const reg = register(name as Path<TFieldValues>);
         return {
           ...acc,
           [name]: {
             ...(hasError && {error}),
-            // hasError,
             ...reg,
           },
         };
       }, {} as Fields<TFieldValues>),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [register, schema, errors, Object.keys(errors)]
+    [register, schema, Object.keys(errors)]
   );
   return {
     errors,

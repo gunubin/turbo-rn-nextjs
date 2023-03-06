@@ -1,9 +1,6 @@
+import {Alert, Center, HStack, Text, VStack} from 'native-base';
 import React, {useEffect, useMemo} from 'react';
-import {Animated, View} from 'react-native';
-
-import {SpaceInset, SpaceQueue} from '@/components/ui/Spacing';
-import {Text} from '@/components/ui/Text';
-import {colors} from '@/styles';
+import {Animated} from 'react-native';
 
 import {getStyles} from './styles';
 import {Props} from './types';
@@ -13,11 +10,6 @@ const FADE_DURATION = 350;
 export const Toast: React.FC<Props> = props => {
   const {type = 'Success'} = props;
   const styles = useMemo(() => getStyles(type), [type]);
-  const textColor = useMemo(
-    () => (type === 'Error' ? colors.semantic.red : '#fff'),
-    [type],
-  );
-
   const opacity = useMemo(() => new Animated.Value(0), []);
   const translateY = useMemo(() => new Animated.Value(-4), []);
 
@@ -38,16 +30,24 @@ export const Toast: React.FC<Props> = props => {
   return (
     <Animated.View
       style={{...styles.container, opacity, transform: [{translateY}]}}>
-      <SpaceInset vertical="xs" left="s" right="m">
-        <View style={styles.content}>
-          <SpaceQueue size="xs" />
-          <View style={styles.labelContainer}>
-            <Text size="l" weight="bold" color={textColor}>
-              {props.children}
-            </Text>
-          </View>
-        </View>
-      </SpaceInset>
+      <Center w="100%">
+        <Alert w="100%" status="info" colorScheme="info">
+          <VStack space={2} flexShrink={1} w="100%">
+            <HStack
+              flexShrink={1}
+              space={2}
+              alignItems="center"
+              justifyContent="space-between">
+              <HStack flexShrink={1} space={2} alignItems="center">
+                <Alert.Icon />
+                <Text fontSize="md" fontWeight="medium" color="coolGray.800">
+                  {props.children}
+                </Text>
+              </HStack>
+            </HStack>
+          </VStack>
+        </Alert>
+      </Center>
     </Animated.View>
   );
 };

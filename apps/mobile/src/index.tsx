@@ -1,5 +1,6 @@
 import {API_BASE_URL, NAME} from '@env';
 import {NavigationContainer} from '@react-navigation/native';
+import {NativeBaseProvider} from 'native-base';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
@@ -15,8 +16,6 @@ import {navigationRef} from '@/services/navigation/Navigation';
 import {RootState} from '@/services/redux/rootReducer';
 import {AppDispatch, configureStore} from '@/services/redux/store';
 
-import {useRootPage} from './hooks';
-
 EnvironmentService.create({API_BASE_URL, NAME});
 // TokenStorage.create(createAuthTokenRepository());
 
@@ -25,18 +24,18 @@ const reduxProvider = ReduxProvider.create<RootState, AppDispatch>();
 reduxProvider.setContext(store);
 
 export const App = () => {
-  useRootPage();
-
   return (
     <SafeAreaProvider>
-      <Provider store={store}>
-        <NavigationContainer ref={navigationRef}>
-          <RootNavigator />
-        </NavigationContainer>
-        <ConnectedBlockingIndicator />
-        <ConnectedModal />
-        <ConnectedTransientToastList />
-      </Provider>
+      <NativeBaseProvider>
+        <Provider store={store}>
+          <NavigationContainer ref={navigationRef}>
+            <RootNavigator />
+          </NavigationContainer>
+          <ConnectedBlockingIndicator />
+          <ConnectedModal />
+          <ConnectedTransientToastList />
+        </Provider>
+      </NativeBaseProvider>
     </SafeAreaProvider>
   );
 };

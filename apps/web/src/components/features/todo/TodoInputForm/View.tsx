@@ -3,12 +3,14 @@ import React from 'react';
 
 import {FormValues} from '@domain/todo/forms/addTodo';
 
+import {Input} from '@/components/ui/Input';
+
 type Props = {
   fields: Fields<FormValues>;
   onPressButton: () => void;
 };
 
-export const TodoInputForm: React.FC<Props> = ({fields, onPressButton}) => {
+export const TodoInputForm: React.FC<Props> = ({fields, onPressButton, ...rest}) => {
   return (
     <>
       <div className="input-group mb-3">
@@ -19,7 +21,12 @@ export const TodoInputForm: React.FC<Props> = ({fields, onPressButton}) => {
         >
           Todo追加
         </button>
-        <input type="text" className="form-control" {...fields.title} />
+        {/*<input type="text" className="form-control"  {...fields.title} />*/}
+        <Input
+          type="text"
+          className="form-control"
+          {...fields.title}
+        />
       </div>
       <div className="">{fields.title.error?.message}</div>
     </>

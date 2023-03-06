@@ -1,24 +1,32 @@
-import React, {useMemo} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Button as BaseButton} from 'native-base';
+import React from 'react';
 
-import {Text} from '@/components/ui/Text';
+import {ButtonType, Props} from './types';
 
-import {getStyles, getTextColor} from './styles';
-import {Props} from './types';
+const buttonStyles: Record<
+  ButtonType,
+  Pick<Props, 'colorScheme' | 'variant'>
+> = {
+  primary: {
+    colorScheme: 'secondary',
+  },
+  sub: {
+    colorScheme: 'primary',
+    variant: 'outline',
+  },
+  warning: {
+    colorScheme: 'warning',
+    variant: 'outline',
+  },
+};
 
 export const Button: React.FC<Props> = props => {
-  const {isDisabled = false, type = 'primary'} = props;
-  const styles = useMemo(() => getStyles(type, isDisabled), [isDisabled, type]);
-  const textColor = useMemo(() => getTextColor(type), [type]);
+  const {type = 'primary'} = props;
+  const args = buttonStyles[type];
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={props.onPress}
-      disabled={props.isDisabled}>
-      <Text align="center" size="l" weight="bold" color={textColor}>
-        {props.children}
-      </Text>
-    </TouchableOpacity>
+    <BaseButton onPress={props.onPress} {...args}>
+      {props.children}
+    </BaseButton>
   );
 };

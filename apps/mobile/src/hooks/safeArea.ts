@@ -1,7 +1,8 @@
-import {safeAreaInset} from '@/styles/spacing';
 import {useMemo} from 'react';
 import {Platform} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
+import {safeAreaInset} from '@/styles/spacing';
 
 export const useSafeAreaBottomInset = (
   bottom: number = safeAreaInset.bottom, // safeAreaがない端末で担保する余白

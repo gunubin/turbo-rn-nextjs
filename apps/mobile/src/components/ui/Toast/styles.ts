@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {StyleMap} from '@lib/types';
+import {StyleMap} from '@/styles/types';
 
 import {Type} from './types';
 
@@ -23,14 +23,12 @@ const typeStyles: StyleMap<Type, typeof styles> = {
     ...styles,
     container: {
       ...styles.container,
-      backgroundColor: '#FAEEEE',
     },
   },
   Success: {
     ...styles,
     container: {
       ...styles.container,
-      backgroundColor: '#2dc84d',
     },
   },
 };

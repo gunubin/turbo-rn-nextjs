@@ -21,13 +21,11 @@
     "android:build": "yarn workspace mobile android",
     "android:start": "yarn workspace mobile start",
     "api": "yarn workspace web api",
-    "build": "turbo run build",
     "clean": "yarn clean:npm && yarn clean:mobile && yarn && yarn ios:pods",
     "clean:android": "yarn workspace mobile clean:android",
     "clean:ios": "yarn workspace mobile clean:ios",
     "clean:mobile": "yarn workspace mobile clean",
     "clean:npm": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock && yarn",
-    "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "ios:build": "yarn workspace mobile ios",
     "ios:pods": "yarn workspace mobile pods",
@@ -35,7 +33,10 @@
     "lint": "turbo run lint",
     "lintfix": "turbo run lint -- --fix",
     "test": "turbo run test",
-    "tsc": "turbo run tsc"
+    "tsc": "turbo run tsc",
+    "web:build": "turbo run build",
+    "web:dev": "turbo run dev",
+    "web:start": "turbo run start"
   },
   "workspaces": [
     "apps/*",

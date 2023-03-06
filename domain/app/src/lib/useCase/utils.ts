@@ -5,7 +5,6 @@ import {useMemo, useState} from 'react';
 import {ApiError} from '@domain/app/api/ApiError';
 import {useErrorDisplay} from '@domain/app/hooks/error';
 import {useIndicator} from '@domain/app/hooks/indicator';
-import {ErrorDisplayType} from '@domain/app/lib/error/types';
 import {createUseCaseState} from '@domain/app/lib/useCase/useCaseState';
 import {createErrorManager} from '@domain/app/services/error/ErrorManager';
 import {
@@ -16,6 +15,7 @@ import {
   applicationErrorHandler,
   networkErrorHandler,
 } from '@domain/app/services/error/handlers';
+import {ErrorDisplayType} from '@domain/app/services/error/types';
 
 type UseCase<TParams, TResult> = (
   params: TParams

@@ -1,7 +1,9 @@
 import {Fields} from 'form';
 import React from 'react';
 
-import {FormValues} from '@domain/todo/forms/addTodo';
+import {FormValues} from '@domain/todo/forms/updateTodo';
+
+import {Input} from '@/components/ui/Input';
 
 type Props = {
   fields: Fields<FormValues>;
@@ -15,11 +17,11 @@ export const TodoEditForm: React.FC<Props> = ({fields, onPressButton}) => {
         <span className="input-group-text" id="inputGroup-sizing-sm">
           タイトル
         </span>
-        <input type="text" className="form-control" {...fields.title} />
+        <Input type="text" className="form-control" {...fields.title} />
         <span className="input-group-text" id="inputGroup-sizing-sm">
           詳細
         </span>
-        <input type="text" className="form-control" {...fields.description} />
+        <Input type="text" className="form-control" {...fields.description} />
 
         <button
           onClick={onPressButton}

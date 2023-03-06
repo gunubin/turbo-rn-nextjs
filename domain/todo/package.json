@@ -2,9 +2,9 @@
   "name": "todo",
   "version": "0.0.0",
   "dependencies": {
+    "form": "*",
     "luxon": "^2.4.0",
-    "utils": "*",
-    "form": "*"
+    "utils": "*"
   },
   "devDependencies": {
     "@types/luxon": "^2.3.2",

@@ -10,6 +10,11 @@ export type RuleCreator<TName extends string> = (
   ruleValue?: any
 ) => Rule<TName>;
 
+// ValueObjectの返り型
+export type ValueObjectReturnType<T> = T extends ValueObject<infer U, any>
+  ? U
+  : T;
+
 export type ValueObject<T = any, K extends Rule<string>[] = []> = {
   create(value: any): T;
   rules: K;

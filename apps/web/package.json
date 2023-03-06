@@ -4,11 +4,11 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "dotenv": "^16.0.3",
+    "form": "*",
     "next": "^13.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.58.3",
-    "form": "*"
+    "sass": "^1.58.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

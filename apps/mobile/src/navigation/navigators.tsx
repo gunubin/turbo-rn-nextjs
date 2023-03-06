@@ -2,6 +2,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
 import {screenViewConfig as topScreenViewConfig} from '@/components/pages/Top/screen';
+import {useRootPage} from '@/hooks';
 import {RootParamList} from '@/navigation/routes';
 
 import * as routeNames from './routeNames';
@@ -9,6 +10,7 @@ import * as routeNames from './routeNames';
 const RootStack = createStackNavigator<RootParamList>();
 
 export const RootNavigator: React.FC = () => {
+  useRootPage();
   return (
     <RootStack.Navigator
       screenOptions={{

@@ -20,7 +20,7 @@ module.exports = {
     'jsdoc/require-hyphen-before-param-description': 2,
     // https://github.com/gajus/eslint-plugin-jsdoc#require-param
     // @param必須
-    'jsdoc/require-param': 2,
+    'jsdoc/require-param': 1,
     // https://github.com/gajus/eslint-plugin-jsdoc#require-param-description
     // @paramの説明必須
     'jsdoc/require-param-description': 2,

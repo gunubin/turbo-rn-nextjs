@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {useSelector} from 'react-redux';
 
-import {BlockingIndicatorPayload} from '@domain/app/model/modal/BlockingIndicatorPayload';
+import {BlockingIndicatorPayload} from '@domain/app/models/modal/BlockingIndicatorPayload';
 import {indicatorSelectors} from '@domain/app/services/modal/redux/indicatorSlice';
 
 import {BlockingIndicator} from './View';

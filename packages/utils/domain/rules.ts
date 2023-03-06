@@ -16,7 +16,7 @@ export const format: RuleCreator<'format'> = (regexp: RegExp) => ({
  */
 export const maxLength: RuleCreator<'maxLength'> = (length: number) => ({
   name: 'maxLength',
-  validate: (val: string) => val.length <= length,
+  validate: (val: string) => val?.length <= length,
 });
 
 /**

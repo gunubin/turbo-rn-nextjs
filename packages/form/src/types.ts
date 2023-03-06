@@ -1,13 +1,15 @@
-import {InputHTMLAttributes} from 'react';
+import {Ref, RefCallback, RefObject} from 'react';
 import {FieldValues} from 'react-hook-form';
-import {Rule, ValueObject} from 'utils/domain';
+import {Rule, ValueObject, ValueObjectReturnType} from 'utils/domain';
 import {PartialRecord} from 'utils/types';
 
-export type InputProps = {
+export type InputProps<TValue = any> = {
   name: string;
+  value: TValue;
   error?: InputError;
-  onChange: InputHTMLAttributes<HTMLElement>['onChange'];
+  onChange: (val: any) => void;
   onBlur: () => void;
+  ref: RefCallback<any>;
 };
 
 export type InputError = {
@@ -16,7 +18,7 @@ export type InputError = {
 };
 
 export type Fields<T> = {
-  [P in keyof T]: InputProps;
+  [P in keyof T]: InputProps<ValueObjectReturnType<T[P]>>;
 };
 
 type ValueObjectRules<T> = T extends ValueObject<any, infer U> ? U : never;
@@ -24,7 +26,7 @@ type RuleName<T> = T extends Rule<infer U> ? U : never;
 
 export type RequiredOption = boolean | {message: string};
 
-type SchemaValueObjectProp<TValueObject extends ValueObject> = {
+type ValueObjectSchemaProp<TValueObject extends ValueObject> = {
   valueObject: TValueObject;
   ruleMessages?: Record<
     RuleName<ValueObjectRules<TValueObject>[number]>,
@@ -33,33 +35,31 @@ type SchemaValueObjectProp<TValueObject extends ValueObject> = {
   required: RequiredOption;
 };
 
-type SchemaPrimitiveProp = {
+type PrimitiveSchemaProp = {
   required: RequiredOption;
 };
 
-type ValidationSchemaProp<TField> = TField extends ValueObject<any, any>
-  ? SchemaValueObjectProp<TField>
-  : SchemaPrimitiveProp;
+export type ValidationSchemaProp<TField> = TField extends ValueObject<any, any>
+  ? ValueObjectSchemaProp<TField>
+  : PrimitiveSchemaProp;
 
 export type ValidationSchema<TFields extends FieldValues> = {
   [key in keyof TFields]: ValidationSchemaProp<TFields[key]>;
 };
 
-// ValueObjectの返り型
-export type ValueObjectReturnType<T> = T extends ValueObject<infer U, any>
-  ? U
-  : T;
-
 export type FieldValuesBySchema<T> = T extends ValidationSchema<infer U>
   ? U
   : never;
 
-export type FieldValuesByValueObjectReturnValue<FieldValues> = {
+type FieldValuesByValueObjectReturnValue<FieldValues> = {
   [K in keyof FieldValues]: ValueObjectReturnType<FieldValues[K]>;
 };
 
-// validation messageの上書き用の型
+// SchemaからValuesObjectのFieldsを取得
+export type ValueObjectFieldValuesBySchema<T> =
+  FieldValuesByValueObjectReturnValue<FieldValuesBySchema<T>>;
 
+// validation messageの上書き用の型
 type SchemaValueObjectFieldRulesMessages<TValueObject extends ValueObject> =
   PartialRecord<
     RuleName<ValueObjectRules<TValueObject>[number]> | 'required',

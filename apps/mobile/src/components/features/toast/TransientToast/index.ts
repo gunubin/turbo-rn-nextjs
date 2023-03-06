@@ -7,5 +7,5 @@ import {Props} from './types';
 
 export const TransientToast: React.FC<Props> = ({id}) => {
   const props = useTransientToast({id});
-  return Toast(props);
+  return React.createElement(Toast, props);
 };

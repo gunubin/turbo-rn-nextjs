@@ -1,18 +1,21 @@
+import {Center, Container, VStack} from 'native-base';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
+
+import {ConnectedTodoInput} from '@/components/features/todo/TodoInput';
+import {ConnectedTodoList} from '@/components/features/todo/TodoList';
 
 export const Top = () => {
   return (
-    <View>
-      <Text>Top</Text>
-      <Text>Top</Text>
-      <Text>Top</Text>
-      <Text>Top</Text>
-      <Text>Top</Text>
-      <Text>Top</Text>
-      <Text>Top</Text>
-      <Text>Top</Text>
-      <Text>Top</Text>
-    </View>
+    <SafeAreaView>
+      <Center w="100%">
+        <Container>
+          <VStack space={4}>
+            <ConnectedTodoInput />
+            <ConnectedTodoList />
+          </VStack>
+        </Container>
+      </Center>
+    </SafeAreaView>
   );
 };

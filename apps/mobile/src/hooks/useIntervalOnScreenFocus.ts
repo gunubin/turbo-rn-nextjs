@@ -1,13 +1,14 @@
 import {useFocusEffect} from '@react-navigation/native';
-import {useCallback, useEffect, useRef} from 'react';
+import {useCallback, useRef} from 'react';
 
 /**
  * setIntervalのhooks関数です。
  *
  * useFocusEffectを使っているのでreact-navigationに依存
- * @param callback
- * @param ms
- * @param options {leading: boolean} useEffectと同時にcallbackを実行するかどうか
+ * @param callback - callback
+ * @param ms - ms
+ * @param options - options
+ * @param options.leading - useEffectと同時にcallbackを実行するかどうか
  */
 export const useIntervalOnScreenFocus = (
   callback: () => void,
@@ -29,23 +30,4 @@ export const useIntervalOnScreenFocus = (
       };
     }, [ms, callback, options]),
   );
-};
-
-/**
- * setTimeoutのhooks関数です。
- *
- * @param callback
- * @param ms
- */
-export const useTimeout = (callback: () => void, ms: number) => {
-  const cb = useRef<() => void>();
-  useEffect(() => {
-    cb.current = callback;
-    const id = setTimeout(() => {
-      cb.current && cb.current();
-    }, ms);
-    return () => {
-      clearTimeout(id);
-    };
-  }, [ms, callback]);
 };
