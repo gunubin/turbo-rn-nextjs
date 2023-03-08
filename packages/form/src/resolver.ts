@@ -24,7 +24,7 @@ const getRules = <TFieldValue extends ValidationSchemaProp<any>>(name: string, f
     if (fieldsErrors?.[name]) {
       rules.push(required(fieldsErrors[name]?.required));
     } else {
-      const message = hasMessageRequiredOption(field.required) ? field.required.message : '';
+      const message = hasMessageRequiredOption(field.required) ? field.required.message : undefined;
       rules.push(required(message));
     }
   }
