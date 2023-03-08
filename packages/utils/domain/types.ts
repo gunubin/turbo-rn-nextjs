@@ -6,8 +6,8 @@ export type Rule<TName extends string> = {
   name: TName;
   validate: Validate;
 };
-export type RuleCreator<TName extends string> = (
-  ruleValue?: any
+export type RuleCreator<TName extends string, TParams = void> = (
+  ruleValue: TParams
 ) => Rule<TName>;
 
 // ValueObjectの返り型

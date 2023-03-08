@@ -14,6 +14,7 @@
     "format": "prettier --loglevel error --write './**/*.{ts,tsx,js}'",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "yarn lint --fix --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
     "tsc": "node_modules/.bin/tsc --noEmit"
   }
 }

@@ -25,50 +25,28 @@ type ValidatorFactoryOptions<TParams> =
 
 export type ValidatorFactory<TParams = any> = TParams extends void
   ? {
-      (message?: ValidationMessage<TParams>): ValidatorObject<TParams>;
+      (message?: ValidationMessage<TParams>): Validator<TParams>;
     }
   : {
       (options: {
         params: TParams;
         message?: ValidationMessage<TParams>;
-      }): ValidatorObject<TParams>;
+      }): Validator<TParams>;
     };
 
-export type Validator<TParams = any, TFields = any> =
-  | ValidatorFunction<TFields>
-  | ValidatorObject<TParams, TFields>;
-
-type ValidatorFunction<TFields = any> = (
-  value: any,
-  values: TFields
-) => ValidationResult;
-type ValidatorObject<TParams = any, TFields = any> = TParams extends void
-  ? {
-      type: string;
-      message: ValidationMessage<TParams>;
-      validate(value: any, values?: TFields): boolean;
-      params?: TParams;
-    }
-  : {
-      type: string;
-      validate(value: any, values?: TFields): boolean;
-      message: ValidationMessage<TParams>;
-      params: TParams;
-    };
+export type Validator<TParams = any, TFields = any> = {
+  type: string;
+  validate(value: any, values?: TFields): boolean;
+  message: ValidationMessage<TParams>;
+  params: TParams;
+};
 
 // Invoke validation
 export function validate(
-  validator: Validator | ValidatorFunction,
+  validator: Validator,
   value: any,
   values: any
 ): ValidationResult {
-  if (typeof validator === 'function') {
-    const result = validator(value, values);
-    return {
-      isValid: result.isValid,
-      message: result.message,
-    };
-  }
   return {
     isValid: validator.validate(value, values),
     message: (() => {
@@ -105,7 +83,7 @@ export const createValidatorFactory = <TParams, TFields = any>({
         return validate(value, values, params!);
       },
     };
-  }) as unknown as ValidatorFactory<TParams>;
+  }) as ValidatorFactory<TParams>;
 };
 
 export const createValidatorFromValueObject = <

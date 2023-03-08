@@ -2,7 +2,6 @@ import React, {useLayoutEffect, useState} from 'react';
 import {
   FieldError,
   FieldPath,
-  FieldValues,
   Path,
   useForm as useReactHookForm,
   UseFormProps,
@@ -10,7 +9,7 @@ import {
 } from 'react-hook-form';
 
 import {getEventValue} from './getEventValue';
-import {createFormResolver} from './schema';
+import {createFormResolver} from './resolver';
 import {
   Fields,
   FieldValuesBySchema,
@@ -18,7 +17,6 @@ import {
   ValidationSchemaRulesMessages,
   ValueObjectFieldValuesBySchema,
 } from './types';
-
 
 type Options<TSchema> = Pick<
   UseFormProps<ValueObjectFieldValuesBySchema<TSchema>>,
@@ -28,12 +26,11 @@ type Options<TSchema> = Pick<
 };
 
 export function useForm<
-  TSchema extends ValidationSchema<TFieldValues>,
-  TFieldValues extends FieldValues = FieldValuesBySchema<TSchema>
+  TSchema extends ValidationSchema<any>,
 >(schema: TSchema, options?: Options<TSchema>) {
   const {defaultValues, rulesMessages} = options || {};
   const resolver = React.useMemo(
-    () => createFormResolver(schema as ValidationSchema<any>, rulesMessages),
+    () => createFormResolver(schema, rulesMessages),
     [schema, rulesMessages]
   );
   const {
@@ -94,7 +91,7 @@ export function useForm<
           const value = getEventValue(event)
           return await registeredOnChange({target: {name, value}, type: 'change'})
         };
-        const onBlur = async() => {
+        const onBlur = async () => {
           const registeredOnBlur = registered[name].onBlur;
           const v = values[name];
           return await registeredOnBlur({target: {name, value: v}, type: 'blur'})

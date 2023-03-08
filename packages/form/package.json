@@ -2,6 +2,7 @@
   "name": "form",
   "version": "0.0.0",
   "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
     "react": "^18.2.0",
     "react-hook-form": "^7.31.1",
     "utils": "*"
@@ -16,6 +17,7 @@
     "format": "prettier --loglevel error --write './**/*.{ts,tsx,js}'",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "yarn lint --fix --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
     "tsc": "node_modules/.bin/tsc --noEmit"
   }
 }
