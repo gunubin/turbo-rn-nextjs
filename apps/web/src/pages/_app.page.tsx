@@ -2,8 +2,8 @@ import '../styles/globals.scss';
 import {NextPage} from 'next';
 import type {AppProps} from 'next/app';
 import {ReactElement, ReactNode} from 'react';
-import {Provider} from 'react-redux';
 
+import {Provider} from '@domain/app/redux';
 import {EnvironmentService} from '@domain/app/services/EnvironmentService';
 import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 

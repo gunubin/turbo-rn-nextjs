@@ -1,5 +1,4 @@
-import {useSelector} from 'react-redux';
-
+import {useSelector} from '@domain/app/redux';
 import {toastSelectors} from '@domain/app/services/toast/redux/toastSlice';
 
 export const useTransientToastList = () => {

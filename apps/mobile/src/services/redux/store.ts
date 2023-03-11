@@ -1,6 +1,4 @@
-import {configureStore as rtkConfigureStore} from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
-
+import {thunk, rtkConfigureStore} from '@domain/app/redux';
 import {modalPromiseMiddleware} from '@domain/app/services/modal/redux/modalPromiseMiddleware';
 import {appApi} from '@domain/app/services/redux/appApi';
 

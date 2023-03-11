@@ -3,8 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {NativeBaseProvider} from 'native-base';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Provider} from 'react-redux';
 
+import {Provider} from '@domain/app/redux';
 import {EnvironmentService} from '@domain/app/services/EnvironmentService';
 import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 

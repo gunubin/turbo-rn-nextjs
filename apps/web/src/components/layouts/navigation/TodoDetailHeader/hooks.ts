@@ -1,6 +1,6 @@
 import {useRouter} from 'next/router';
-import {useSelector} from 'react-redux';
 
+import {useSelector} from '@domain/app/redux';
 import {TodoId} from '@domain/todo/models/todo/TodoId';
 import {todoApi} from '@domain/todo/services/todo/redux/todoApi';
 

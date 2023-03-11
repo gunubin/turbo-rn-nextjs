@@ -1,5 +1,4 @@
-import {combineReducers} from '@reduxjs/toolkit';
-
+import {combineReducers} from '@domain/app/redux';
 import {appApi} from '@domain/app/services/redux/appApi';
 import {appReducer} from '@domain/app/services/redux/appReducer';
 

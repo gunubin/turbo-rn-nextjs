@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
-import {useSelector} from 'react-redux';
 
+import {useSelector} from '@domain/app';
 import {useTimeout} from '@domain/app/hooks/timer';
 import {createToastManger} from '@domain/app/services/toast/ToastManager';
 import {toastSelectors} from '@domain/app/services/toast/redux/toastSlice';

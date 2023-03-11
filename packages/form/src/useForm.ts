@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {
   FieldError,
   FieldPath,
@@ -55,7 +55,7 @@ export function useForm<
   const [registered, setRegistered] = useState<
     Record<any, UseFormRegisterReturn>
   >({});
-  useLayoutEffect(() => {
+  useEffect(() => {
     Object.keys(schema).forEach((name) => {
       const ret = register(
         name as Path<ValueObjectFieldValuesBySchema<TSchema>>

@@ -1,6 +1,6 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 
+import {useSelector} from '@domain/app';
 import {MessageDialogPayload} from '@domain/app/models/modal/MessageDialogPayload';
 import {createMessageDialog} from '@domain/app/services/modal/MessageDialog';
 import {modalSelectors} from '@domain/app/services/modal/redux/modalSlice';
