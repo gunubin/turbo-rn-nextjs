@@ -40,7 +40,7 @@ type Options<
 
 export function useForm<TSchema extends ValidationSchema<any>>(
   schema: TSchema,
-  {defaultValues, errorMessages}: Options<TSchema> = {}
+  options: Options<TSchema> = {}
 ) {
   const fieldsSchema = useMemo(
     () =>
@@ -70,7 +70,7 @@ export function useForm<TSchema extends ValidationSchema<any>>(
     reset,
     setFocus,
   } = useReactHookForm<ValueObjectFieldValuesBySchema<TSchema>>({
-    defaultValues: defaultValues as UseFormProps<
+    defaultValues: options.defaultValues as UseFormProps<
       ValueObjectFieldValuesBySchema<TSchema>
     >['defaultValues'],
     mode: 'onChange',
@@ -89,14 +89,11 @@ export function useForm<TSchema extends ValidationSchema<any>>(
         >[]
       ).reduce<Fields<ValueObjectFieldValuesBySchema<TSchema>>>((acc, name) => {
         const field = schema[name];
-        let schemaErrorMessages: ErrorMessages | undefined =
-          {} as ErrorMessages;
-        if ('valueObject' in field) {
-          schemaErrorMessages = field.errorMessages;
-        }
+        const schemaErrorMessages: ErrorMessages | undefined =
+          'valueObject' in field ? field.errorMessages : undefined;
 
         const originalError = errors[name];
-        const fieldErrorMessages = errorMessages?.[name];
+        const fieldErrorMessages = options.errorMessages?.[name];
         const errorType = originalError?.type as z.ZodIssueCode;
         const error = {
           ...originalError,
@@ -139,7 +136,7 @@ export function useForm<TSchema extends ValidationSchema<any>>(
           },
         };
       }, {} as Fields<ValueObjectFieldValuesBySchema<TSchema>>),
-    [schema, values, errors, register, errorMessages]
+    [schema, values, errors, register, options.errorMessages]
   );
   return {
     errors,
