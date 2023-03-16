@@ -1,4 +1,5 @@
 import {createSchema} from 'form';
+import {z} from 'utils/validation';
 
 import {TodoTitle} from '@domain/todo/models/todo/TodoTitle';
 
@@ -9,12 +10,12 @@ export type FormValues = {
 
 export const updateTodoSchema = createSchema<FormValues>({
   description: {
-    required: false,
+    schema: z.string(),
   },
   title: {
-    required: true,
-    ruleMessages: {
-      maxLength: '100文字以下で入力してください',
+    errorMessages: {
+      too_big: '100文字以下で入力してください',
+      too_small: '1文字以上で入力してください',
     },
     valueObject: TodoTitle,
   },

@@ -101,6 +101,7 @@ export const todoApi = appApi.injectEndpoints({
 export const {
   useUpdateTodoMutation,
   useGetTodoQuery,
+  useLazyGetTodoQuery,
   useGetTodoListQuery,
   useCreateTodoMutation,
   useDeleteTodoMutation,

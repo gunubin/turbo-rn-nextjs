@@ -24,16 +24,22 @@ export const useTodoEditForm = () => {
   useIndicator(isLoading);
 
   const {fields, isValid, handleSubmit, setValue} = useForm(updateTodoSchema, {
-    defaultValues: {
-      description: item?.description,
-      title: item?.title,
+    // defaultValues: {
+    //   description: item?.description,
+    //   title: item?.title,
+    // },
+    errorMessages: {
+      title: {
+        too_big: '100文字以下で入力してください',
+        // too_small: '1文字以上で入力してください',
+      },
     },
   });
 
   useEffect(() => {
     setValue('title', item?.title);
     setValue('description', item?.description);
-  }, [setValue, item]);
+  }, [setValue, item?.title, item?.description]);
 
   const onPressButton = useMemo(
     () =>

@@ -1,6 +1,7 @@
 import {UseQuery} from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import {QueryDefinition} from '@reduxjs/toolkit/query';
 import {useMemo, useState} from 'react';
+import {failure, Result, success} from 'utils/result';
 
 import {ApiError} from '@domain/app/api/ApiError';
 import {useErrorDisplay} from '@domain/app/hooks/error';
@@ -17,11 +18,9 @@ import {
 } from '@domain/app/services/error/handlers';
 import {ErrorDisplayType} from '@domain/app/services/error/types';
 
-type UseCase<TParams, TResult> = (
-  params: TParams
-) => Promise<TResult | undefined>;
+type UseCase<TParams, TResult> = (params: TParams) => Promise<TResult>;
 type UseCaseFactoryResult<TParams, TResult> = [
-  UseCase<TParams, TResult>,
+  UseCase<TParams, Result<TResult, any>>,
   {isLoading: boolean}
 ];
 
@@ -30,6 +29,13 @@ type UseCaseFactoryOptions = {
   errorDisplayType?: ErrorDisplayType;
 };
 
+/**
+ * 既存の関数をラップして状態管理とエラーハンドリングのロジックを追加するusecaseのファクトリ関数を作成します。
+ *
+ * @param useCseFactory - 依存関係を受け取ってusecaseを実行する関数を返す関数
+ * @param options - ID文字列とオプションのエラー表示タイプを含むオブジェクト
+ * @returns {UseCaseFactoryResult} - usecase関数とローディングステートを持つオブジェクトを含むタプル
+ */
 export const createUseCaseFactory = <
   // 順番悩ましいけど一旦
   TParams = void,
@@ -39,7 +45,7 @@ export const createUseCaseFactory = <
   useCseFactory: (deps: TDeps) => UseCase<TParams, TResult>,
   options: UseCaseFactoryOptions
 ) => {
-  const {id} = options || {};
+  const {id, errorDisplayType} = options || {};
   return (deps: TDeps): UseCaseFactoryResult<TParams, TResult> => {
     const [isLoading, setIsLoading] = useState(false);
     const useCaseState = createUseCaseState();
@@ -51,15 +57,15 @@ export const createUseCaseFactory = <
           setIsLoading(true);
           const result = await useCase(params);
           useCaseState.success({id, result});
-          return result;
+          return success(result);
         } catch (error) {
           useCaseState.fail({error, id});
           if (error instanceof ApiError) {
             const errorManager = createErrorManager(networkErrorHandler);
             errorManager.show({
               error: transformNetworkError(error),
-              ...(options?.errorDisplayType && {
-                defaultErrorDisplayType: options.errorDisplayType,
+              ...(errorDisplayType && {
+                defaultErrorDisplayType: errorDisplayType,
               }),
             });
           } else {
@@ -68,7 +74,7 @@ export const createUseCaseFactory = <
               error: transformApplicationError(error as Error),
             });
           }
-          return undefined;
+          return failure(error);
         } finally {
           setIsLoading(false);
         }

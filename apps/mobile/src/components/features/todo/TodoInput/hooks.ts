@@ -10,19 +10,15 @@ import {useIndicator} from '@/hooks/indicator';
 export const useTodoInput = () => {
   const [addTodo, {isLoading}] = useAddTodoUseCase();
   useIndicator(isLoading);
-  const {fields, handleSubmit} = useForm(addTodoSchema, {
-    defaultValues: {
-      title: '',
-    },
-  });
+  const {fields, handleSubmit} = useForm(addTodoSchema);
 
   const onPressButton = useMemo(
     () =>
-      handleSubmit(values => {
+      handleSubmit(async values => {
         const item = Todo.create({
           title: values.title,
         });
-        addTodo({item});
+        await addTodo({item});
       }),
     [handleSubmit, addTodo],
   );

@@ -1,9 +1,10 @@
-import {defineValueObject, maxLength} from 'utils/domain';
-
-export type TodoTitle = string & {readonly brand: unique symbol};
+import {createValueObject} from 'utils/domain';
+import {z} from 'utils/validation';
 
 // eslint-disable-next-line no-redeclare
-export const TodoTitle = defineValueObject({
-  create: (val: string) => val as TodoTitle,
-  rules: [maxLength(100)],
-});
+export const TodoTitle = createValueObject(
+  z.string().min(1).max(100).brand('TodoTitle')
+);
+
+// eslint-disable-next-line no-redeclare
+export type TodoTitle = z.infer<typeof TodoTitle.schema>;

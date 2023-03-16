@@ -6,7 +6,8 @@
     "@domain/todo": "*",
     "bootstrap": "^5.2.3",
     "form": "*",
-    "next": "^13.1.1",
+    "next": "^13.2.4",
+    "nextjs-routes": "^1.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.58.3"

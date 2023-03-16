@@ -22,14 +22,13 @@ export const TodoInputForm: React.FC<Props> = ({fields, onPressButton, ...rest})
         >
           Todo追加
         </button>
-        {/*<input type="text" className="form-control"  {...fields.title} />*/}
         <Input
           type="text"
           className="form-control"
           {...fields.title}
         />
       </div>
-      <div className="">{fields.title.error?.message}</div>
+      <div className="">{fields.title?.error?.message}</div>
     </>
   );
 };

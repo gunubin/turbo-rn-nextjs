@@ -1,7 +1,9 @@
-import {Ref, RefCallback, RefObject} from 'react';
+import {RefCallback} from 'react';
 import {FieldValues} from 'react-hook-form';
-import {Rule, ValueObject, ValueObjectReturnType} from 'utils/domain';
-import {PartialRecord} from 'utils/types';
+import {ValueObject, ValueObjectReturnType} from 'utils/domain';
+import {z} from 'zod';
+
+import {ErrorMessages} from './useForm';
 
 export type InputProps<TValue = any> = {
   name: string;
@@ -21,22 +23,13 @@ export type Fields<T> = {
   [P in keyof T]: InputProps<ValueObjectReturnType<T[P]>>;
 };
 
-type ValueObjectRules<T> = T extends ValueObject<any, infer U> ? U : never;
-type RuleName<T> = T extends Rule<infer U> ? U : never;
-
-export type RequiredOption = boolean | {message: string};
-
 type ValueObjectSchemaProp<TValueObject extends ValueObject> = {
   valueObject: TValueObject;
-  ruleMessages?: Record<
-    RuleName<ValueObjectRules<TValueObject>[number]>,
-    string
-  >;
-  required: RequiredOption;
+  errorMessages?: ErrorMessages;
 };
 
 type PrimitiveSchemaProp = {
-  required: RequiredOption;
+  schema: z.ZodType;
 };
 
 export type ValidationSchemaProp<TField> = TField extends ValueObject<any, any>
@@ -58,20 +51,3 @@ type FieldValuesByValueObjectReturnValue<FieldValues> = {
 // SchemaからValuesObjectのFieldsを取得
 export type ValueObjectFieldValuesBySchema<T> =
   FieldValuesByValueObjectReturnValue<FieldValuesBySchema<T>>;
-
-// validation messageの上書き用の型
-type SchemaValueObjectFieldRulesMessages<TValueObject extends ValueObject> =
-  PartialRecord<
-    RuleName<ValueObjectRules<TValueObject>[number]> | 'required',
-    string
-  >;
-
-type SchemaPrimitiveFieldRulesMessages = PartialRecord<'required', string>;
-
-type SchemaFieldRulesMessages<TField> = TField extends ValueObject<any, any>
-  ? SchemaValueObjectFieldRulesMessages<TField>
-  : SchemaPrimitiveFieldRulesMessages;
-
-export type ValidationSchemaRulesMessages<TFieldValues extends FieldValues> = {
-  [K in keyof TFieldValues]?: SchemaFieldRulesMessages<TFieldValues[K]>;
-};
