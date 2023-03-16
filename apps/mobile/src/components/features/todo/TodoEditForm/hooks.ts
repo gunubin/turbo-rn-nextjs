@@ -2,6 +2,7 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 import {useForm} from 'form';
 import {useMemo} from 'react';
 
+import {useUseCase} from '@domain/app/lib/useCase/useUseCase';
 import {updateTodoSchema} from '@domain/todo/forms/updateTodo';
 import {Todo} from '@domain/todo/models/todo/Todo';
 import {useLazyGetTodoQuery} from '@domain/todo/services/todo/redux/todoApi';
@@ -19,7 +20,7 @@ export const useTodoEditForm = () => {
 
   const [getTodo] = useLazyGetTodoQuery();
 
-  const [updateTodo, {isLoading}] = useUpdateTodoUseCase();
+  const [updateTodo, {isLoading}] = useUseCase(useUpdateTodoUseCase());
 
   useIndicator(isLoading);
 

@@ -1,4 +1,4 @@
-import {createUseCaseFactory} from '@domain/app/lib/useCase/utils';
+import {createUseCaseFactory} from '@domain/app/lib/useCase';
 import {ReduxProvider} from '@domain/app/services/redux/ReduxProvider';
 import {createToastManger} from '@domain/app/services/toast/ToastManager';
 import {TodoId} from '@domain/todo/models/todo/TodoId';

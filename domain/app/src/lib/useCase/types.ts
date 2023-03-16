@@ -34,3 +34,5 @@ export interface IUseCaseState {
   command(params: UseCaseCommand): void;
   success(params: UseCaseCommand & Pick<UseCaseEventSucceeded, 'result'>): void;
 }
+
+export type UseCase<TParams, TResult> = (params: TParams) => Promise<TResult>;

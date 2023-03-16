@@ -28,7 +28,9 @@ export const TodoInputForm: React.FC<Props> = ({fields, onPressButton, ...rest})
           {...fields.title}
         />
       </div>
-      <div className="">{fields.title?.error?.message}</div>
+      {fields.title?.error && (
+        <div className="">{fields.title?.error?.message}</div>
+      )}
     </>
   );
 };

@@ -22,7 +22,14 @@ export type ErrorHandler<E extends BaseError> = (
   error: E
 ) => ErrorPayload | [ErrorDialogPayload, ErrorToastPayload] | undefined;
 
-export interface IErrorManager<T extends BaseError> {
+export interface IErrorDisplayManager<T> {
+  show(params: {
+    error: T;
+    defaultErrorDisplayType?: ErrorDisplayType;
+  }): Promise<void>;
+}
+
+export interface IErrorDisplay<T extends BaseError> {
   show(params: {
     error: T;
     defaultErrorDisplayType?: ErrorDisplayType;

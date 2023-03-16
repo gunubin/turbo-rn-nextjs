@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import {useEffect, useMemo} from 'react';
 
 import {useIndicator} from '@domain/app/hooks/indicator';
-import {createQuery} from '@domain/app/lib/useCase/utils';
+import {useUseCase} from '@domain/app/lib/useCase/useUseCase';
 import {updateTodoSchema} from '@domain/todo/forms/updateTodo';
 import {Todo} from '@domain/todo/models/todo/Todo';
 import {TodoId} from '@domain/todo/models/todo/TodoId';
@@ -17,9 +17,9 @@ export const useTodoEditForm = () => {
   } = useRouter();
   const id = TodoId.create(todoId as string);
 
-  const {data: item} = createQuery(useGetTodoQuery)(id, {skip: !isReady});
+  const {data: item} = useGetTodoQuery(id, {skip: !isReady});
 
-  const [updateTodo, {isLoading}] = useUpdateTodoUseCase();
+  const [updateTodo, {isLoading}] = useUseCase(useUpdateTodoUseCase());
 
   useIndicator(isLoading);
 
@@ -37,9 +37,11 @@ export const useTodoEditForm = () => {
   });
 
   useEffect(() => {
-    setValue('title', item?.title);
-    setValue('description', item?.description);
-  }, [setValue, item?.title, item?.description]);
+    if (item) {
+      setValue('title', item.title);
+      setValue('description', item.description || '');
+    }
+  }, [setValue, item, item?.title, item?.description]);
 
   const onPressButton = useMemo(
     () =>
