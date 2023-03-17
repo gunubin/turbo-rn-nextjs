@@ -3,13 +3,12 @@ import {useEffect, useMemo} from 'react';
 import {createBlockingIndicator} from '@domain/app/services/modal/BlockingIndicator';
 
 type Options = {
-  indicatorId?: string;
+  id?: string;
 };
 
-// TODO: 場所
 export const useIndicator = (isLoading: boolean, options?: Options) => {
   const blockingIndicator = useMemo(() => createBlockingIndicator(), []);
-  const {indicatorId: id} = options || {};
+  const {id} = options || {};
   useEffect(() => {
     if (isLoading) {
       blockingIndicator.show({
@@ -18,6 +17,6 @@ export const useIndicator = (isLoading: boolean, options?: Options) => {
     } else {
       blockingIndicator.hide({id});
     }
-    return () => blockingIndicator.clear();
+    // return () => blockingIndicator.clear();
   }, [blockingIndicator, isLoading, id]);
 };

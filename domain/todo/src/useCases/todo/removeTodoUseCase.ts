@@ -9,7 +9,7 @@ type Params = {
   id: TodoId;
 };
 
-export const useRemoveTodoUseCase = createUseCaseFactory<Params>(
+export const createRemoveTodoUseCase = createUseCaseFactory<Params>(
   () => {
     const todoList = useTodoList();
     const toast = createToastManger();

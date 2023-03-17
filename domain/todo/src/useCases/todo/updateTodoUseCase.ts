@@ -7,7 +7,7 @@ type Params = {
   item: Todo;
 };
 
-export const useUpdateTodoUseCase = createUseCaseFactory<Params>(
+export const createUpdateTodoUseCase = createUseCaseFactory<Params>(
   () => {
     const todoList = useTodoList();
     const toast = createToastManger();

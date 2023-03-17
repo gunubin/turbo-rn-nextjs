@@ -10,7 +10,7 @@ import {createAddTodoUseCase} from '@domain/todo/useCases/todo/addTodoUseCase';
 export const useTodoInputForm = () => {
   const [addTodo, {isLoading}] = useUseCase(createAddTodoUseCase());
 
-  useIndicator(isLoading);
+  useIndicator(isLoading, {id: 'createAddTodoUseCase'});
 
   const {fields, isValid, handleSubmit} = useForm(addTodoSchema);
 

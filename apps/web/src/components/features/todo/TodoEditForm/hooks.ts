@@ -8,7 +8,7 @@ import {updateTodoSchema} from '@domain/todo/forms/updateTodo';
 import {Todo} from '@domain/todo/models/todo/Todo';
 import {TodoId} from '@domain/todo/models/todo/TodoId';
 import {useGetTodoQuery} from '@domain/todo/services/todo/redux/todoApi';
-import {useUpdateTodoUseCase} from '@domain/todo/useCases/todo/updateTodoUseCase';
+import {createUpdateTodoUseCase} from '@domain/todo/useCases/todo/updateTodoUseCase';
 
 export const useTodoEditForm = () => {
   const {
@@ -19,9 +19,9 @@ export const useTodoEditForm = () => {
 
   const {data: item} = useGetTodoQuery(id, {skip: !isReady});
 
-  const [updateTodo, {isLoading}] = useUseCase(useUpdateTodoUseCase());
+  const [updateTodo, {isLoading}] = useUseCase(createUpdateTodoUseCase());
 
-  useIndicator(isLoading);
+  useIndicator(isLoading, {id: 'useUpdateTodoUseCase'});
 
   const {fields, isValid, handleSubmit, setValue} = useForm(updateTodoSchema, {
     // defaultValues: {

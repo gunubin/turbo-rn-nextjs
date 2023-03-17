@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useMemo, useState} from 'react';
 import {failure, Result, success} from 'utils/result';
 
 import {UseCase} from '@domain/app/lib/useCase/types';
@@ -6,7 +6,7 @@ import {createErrorDisplayManager} from '@domain/app/services/error/ErrorDisplay
 import {ErrorDisplayType} from '@domain/app/services/error/types';
 
 export function useUseCase<TParams = void, TResult = void>(
-  command: UseCase<TParams, TResult>,
+  useCase: UseCase<TParams, TResult>,
   options?: {
     errorDisplayType?: ErrorDisplayType;
   }
@@ -14,11 +14,12 @@ export function useUseCase<TParams = void, TResult = void>(
   const [isLoading, setIsLoading] = useState(false);
   const {errorDisplayType} = options || {};
 
-  const execute = useCallback(
+  const command = useCallback(
     async (params: TParams) => {
       setIsLoading(true);
       try {
-        const result = await command(params);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const result = await useCase(params);
         return success(result);
       } catch (error) {
         const errorDisplayManager = createErrorDisplayManager();
@@ -31,8 +32,8 @@ export function useUseCase<TParams = void, TResult = void>(
         setIsLoading(false);
       }
     },
-    [command, errorDisplayType]
+    [errorDisplayType] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-  return [execute, {isLoading}];
+  return [command, {isLoading}];
 }

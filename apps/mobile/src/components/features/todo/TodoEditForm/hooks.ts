@@ -6,7 +6,7 @@ import {useUseCase} from '@domain/app/lib/useCase/useUseCase';
 import {updateTodoSchema} from '@domain/todo/forms/updateTodo';
 import {Todo} from '@domain/todo/models/todo/Todo';
 import {useLazyGetTodoQuery} from '@domain/todo/services/todo/redux/todoApi';
-import {useUpdateTodoUseCase} from '@domain/todo/useCases/todo/updateTodoUseCase';
+import {createUpdateTodoUseCase} from '@domain/todo/useCases/todo/updateTodoUseCase';
 
 import {useIndicator} from '@/hooks/indicator';
 import {RootParamList} from '@/navigation/routes';
@@ -20,7 +20,7 @@ export const useTodoEditForm = () => {
 
   const [getTodo] = useLazyGetTodoQuery();
 
-  const [updateTodo, {isLoading}] = useUseCase(useUpdateTodoUseCase());
+  const [updateTodo, {isLoading}] = useUseCase(createUpdateTodoUseCase());
 
   useIndicator(isLoading);
 

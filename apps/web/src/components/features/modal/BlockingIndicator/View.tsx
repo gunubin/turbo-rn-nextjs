@@ -8,7 +8,7 @@ export const BlockingIndicator: React.FC<Props> = () => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.background}>
-        {/*<ActivityIndicator animating color={colors.semantic.blue} />*/}
+        <div className="spinner-border text-light" role="status"></div>
       </div>
     </div>
   );
