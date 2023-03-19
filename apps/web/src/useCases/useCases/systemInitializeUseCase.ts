@@ -6,7 +6,7 @@ const sleep = (msec: number) =>
 export const useSystemInitializeUseCase = createUseCaseFactory(
   () => {
     return async () => {
-      await sleep(2000);
+      await sleep(1000);
     };
   },
   {

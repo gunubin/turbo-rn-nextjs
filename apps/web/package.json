@@ -19,13 +19,11 @@
     "@types/react-dom": "^18.0.7",
     "dotenv": "^16.0.3",
     "eslint-config-custom": "*",
-    "json-server": "^0.17.1",
     "tsconfig": "*",
     "typescript": "^4.5.3"
   },
   "private": true,
   "scripts": {
-    "api": "json-server -p 3001 -w db.json",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",

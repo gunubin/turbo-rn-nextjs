@@ -7,7 +7,6 @@
 declare module "nextjs-routes" {
   export type Route =
     | StaticRoute<"/">
-    | StaticRoute<"/test">
     | DynamicRoute<"/todo/[todoId]", { "todoId": string }>;
 
   interface StaticRoute<Pathname> {
