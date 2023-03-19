@@ -1,79 +1,86 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import {zodResolver} from '@hookform/resolvers/zod';
+import React, {useMemo} from 'react';
 import {
   FieldError,
   FieldPath,
-  Path,
   useForm as useReactHookForm,
   UseFormProps,
-  UseFormRegisterReturn,
 } from 'react-hook-form';
+import {z} from 'zod';
 
 import {getEventValue} from './getEventValue';
-import {createFormResolver} from './resolver';
 import {
   Fields,
-  FieldValuesBySchema,
   ValidationSchema,
-  ValidationSchemaRulesMessages,
   ValueObjectFieldValuesBySchema,
 } from './types';
 
-type Options<TSchema> = Pick<
-  UseFormProps<ValueObjectFieldValuesBySchema<TSchema>>,
-  'defaultValues'
-> & {
-  rulesMessages?: ValidationSchemaRulesMessages<FieldValuesBySchema<TSchema>>;
+export type ErrorMessages = {
+  [code in z.ZodIssueCode]?: string;
 };
 
-export function useForm<
-  TSchema extends ValidationSchema<any>,
->(schema: TSchema, options?: Options<TSchema>) {
-  const {defaultValues, rulesMessages} = options || {};
-  const resolver = React.useMemo(
-    () => createFormResolver(schema, rulesMessages),
-    [schema, rulesMessages]
+type FieldsErrorMessages<TFieldValues> = {
+  [field in keyof TFieldValues]?: ErrorMessages;
+};
+
+type DefaultValues<TFieldValues> = Partial<TFieldValues>;
+type AsyncDefaultValues<TFieldValues> = (
+  payload?: unknown
+) => Promise<DefaultValues<TFieldValues>>;
+type Options<
+  TSchema,
+  TFieldValues = ValueObjectFieldValuesBySchema<TSchema>
+> = {
+  defaultValues?:
+    | DefaultValues<TFieldValues>
+    | AsyncDefaultValues<TFieldValues>;
+} & {
+  errorMessages?: FieldsErrorMessages<ValueObjectFieldValuesBySchema<TSchema>>;
+};
+
+export function useForm<TSchema extends ValidationSchema<any>>(
+  schema: TSchema,
+  options: Options<TSchema> = {}
+) {
+  const fieldsSchema = useMemo(
+    () =>
+      Object.entries(schema).reduce<Record<string, z.ZodType>>(
+        (acc, [name, field]) => {
+          if ('valueObject' in field && field.valueObject.schema) {
+            return {...acc, [name]: field.valueObject.schema};
+          } else if ('schema' in field) {
+            return {...acc, [name]: field.schema};
+          } else {
+            return acc;
+          }
+        },
+        {}
+      ),
+    [schema]
   );
+
+  const formSchema = z.object(fieldsSchema);
+
   const {
     setValue,
     watch,
     register,
-    unregister,
     formState: {isValid, errors},
     handleSubmit,
     reset,
     setFocus,
   } = useReactHookForm<ValueObjectFieldValuesBySchema<TSchema>>({
-    defaultValues,
+    defaultValues: options.defaultValues as UseFormProps<
+      ValueObjectFieldValuesBySchema<TSchema>
+    >['defaultValues'],
     mode: 'onChange',
     reValidateMode: 'onChange',
-    resolver,
+    resolver: zodResolver(formSchema),
   });
 
   // Get all values
   const values = watch();
 
-  const [registered, setRegistered] = useState<
-    Record<any, UseFormRegisterReturn>
-  >({});
-  useEffect(() => {
-    Object.keys(schema).forEach((name) => {
-      const ret = register(
-        name as Path<ValueObjectFieldValuesBySchema<TSchema>>
-      );
-      if (!(name in registered)) {
-        setRegistered({[name]: ret, ...registered});
-      }
-    });
-    return () => {
-      Object.keys(schema).forEach((name) => {
-        unregister(
-          name as Path<ValueObjectFieldValuesBySchema<TSchema>>
-        );
-      });
-    };
-  }, [schema, register, unregister, registered]);
-
-  // Register all fields
   const fieldProps = React.useMemo(
     () =>
       (
@@ -81,36 +88,55 @@ export function useForm<
           ValueObjectFieldValuesBySchema<TSchema>
         >[]
       ).reduce<Fields<ValueObjectFieldValuesBySchema<TSchema>>>((acc, name) => {
+        const field = schema[name];
+        const schemaErrorMessages: ErrorMessages | undefined =
+          'valueObject' in field ? field.errorMessages : undefined;
+
+        const originalError = errors[name];
+        const fieldErrorMessages = options.errorMessages?.[name];
+        const errorType = originalError?.type as z.ZodIssueCode;
         const error = {
-          ...errors[name],
+          ...originalError,
+          ...(schemaErrorMessages?.[errorType] !== undefined && {
+            message: schemaErrorMessages[errorType],
+          }),
+          ...(fieldErrorMessages?.[errorType] !== undefined && {
+            message: fieldErrorMessages[errorType],
+          }),
         } as FieldError;
         const hasError = !!error?.message;
 
+        const fieldControl = register(name);
+
         const onChange = async (event: string) => {
-          const registeredOnChange = registered[name].onChange;
-          const value = getEventValue(event)
-          return await registeredOnChange({target: {name, value}, type: 'change'})
+          const value = getEventValue(event);
+          return await fieldControl.onChange({
+            target: {name, value},
+            type: 'change',
+          });
         };
         const onBlur = async () => {
-          const registeredOnBlur = registered[name].onBlur;
           const v = values[name];
-          return await registeredOnBlur({target: {name, value: v}, type: 'blur'})
+          return await fieldControl.onBlur({
+            target: {name, value: v},
+            type: 'blur',
+          });
         };
         return {
           ...acc,
           [name]: {
-            ...registered[name],
+            ...fieldControl,
             ...(hasError && {error}),
             onBlur,
             onChange,
             ref: (instance: any) => {
-              registered[name]?.ref?.(instance);
+              fieldControl.ref?.(instance);
             },
             value: values[name],
           },
         };
       }, {} as Fields<ValueObjectFieldValuesBySchema<TSchema>>),
-    [schema, values, errors, registered]
+    [schema, values, errors, register, options.errorMessages]
   );
   return {
     errors,

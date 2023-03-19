@@ -1,17 +1,22 @@
 import {useCallback} from 'react';
 
-import {createQuery} from '@domain/app/lib/useCase/utils';
-import {useNavigation} from '@domain/app/services/navigation/Navigation';
+import {useErrorDisplay} from '@domain/app/hooks/error';
+import {useIndicator} from '@domain/app/hooks/indicator';
+import {useUseCase} from '@domain/app/lib/useCase/useUseCase';
 import {TodoId} from '@domain/todo/models/todo/TodoId';
 import {useGetTodoListQuery} from '@domain/todo/services/todo/redux/todoApi';
-import {useRemoveTodoUseCase} from '@domain/todo/useCases/todo/removeTodoUseCase';
+import {createRemoveTodoUseCase} from '@domain/todo/useCases/todo/removeTodoUseCase';
 
+import {createNavigation} from '@/services/navigation/Navigation';
 
 export const useTodoList = () => {
-  const [removeTodo] = useRemoveTodoUseCase();
-  const {data: list} = createQuery(useGetTodoListQuery, {indicator: true})();
+  const [removeTodo] = useUseCase(createRemoveTodoUseCase());
+  const {data: list, isLoading, error} = useGetTodoListQuery();
+  
+  useErrorDisplay(error);
+  useIndicator(isLoading, {id: 'useGetTodoListQuery'})
 
-  const nav = useNavigation();
+  const nav = createNavigation();
 
   const onPressItem = useCallback(
     (id: TodoId) => {

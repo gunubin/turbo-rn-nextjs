@@ -3,12 +3,12 @@ import {useRouter} from 'next/router';
 import {useEffect, useMemo} from 'react';
 
 import {useIndicator} from '@domain/app/hooks/indicator';
-import {createQuery} from '@domain/app/lib/useCase/utils';
+import {useUseCase} from '@domain/app/lib/useCase/useUseCase';
 import {updateTodoSchema} from '@domain/todo/forms/updateTodo';
 import {Todo} from '@domain/todo/models/todo/Todo';
 import {TodoId} from '@domain/todo/models/todo/TodoId';
 import {useGetTodoQuery} from '@domain/todo/services/todo/redux/todoApi';
-import {useUpdateTodoUseCase} from '@domain/todo/useCases/todo/updateTodoUseCase';
+import {createUpdateTodoUseCase} from '@domain/todo/useCases/todo/updateTodoUseCase';
 
 export const useTodoEditForm = () => {
   const {
@@ -17,23 +17,31 @@ export const useTodoEditForm = () => {
   } = useRouter();
   const id = TodoId.create(todoId as string);
 
-  const {data: item} = createQuery(useGetTodoQuery)(id, {skip: !isReady});
+  const {data: item} = useGetTodoQuery(id, {skip: !isReady});
 
-  const [updateTodo, {isLoading}] = useUpdateTodoUseCase();
+  const [updateTodo, {isLoading}] = useUseCase(createUpdateTodoUseCase());
 
-  useIndicator(isLoading);
+  useIndicator(isLoading, {id: 'useUpdateTodoUseCase'});
 
   const {fields, isValid, handleSubmit, setValue} = useForm(updateTodoSchema, {
-    defaultValues: {
-      description: item?.description,
-      title: item?.title,
+    // defaultValues: {
+    //   description: item?.description,
+    //   title: item?.title,
+    // },
+    errorMessages: {
+      title: {
+        too_big: '100文字以下で入力してください',
+        // too_small: '1文字以上で入力してください',
+      },
     },
   });
 
   useEffect(() => {
-    setValue('title', item?.title);
-    setValue('description', item?.description);
-  }, [setValue, item]);
+    if (item) {
+      setValue('title', item.title);
+      setValue('description', item.description || '');
+    }
+  }, [setValue, item, item?.title, item?.description]);
 
   const onPressButton = useMemo(
     () =>

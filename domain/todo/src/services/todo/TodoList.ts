@@ -11,13 +11,13 @@ export const useTodoList = (): ITodoListService => {
   const [updateTodo] = useUpdateTodoMutation();
   return {
     add: async ({item}) => {
-      return createTodo(item).unwrap();
+      return await createTodo(item).unwrap();
     },
     remove: async ({id}) => {
-      return deleteTodo(id).unwrap();
+      return await deleteTodo(id).unwrap();
     },
-    update: ({item}) => {
-      return updateTodo(item).unwrap();
+    update: async ({item}) => {
+      return await updateTodo(item).unwrap();
     },
   };
 };

@@ -14,8 +14,8 @@ type Props = {
 export const TodoInput: React.FC<Props> = ({fields, onPressButton}) => {
   return (
     <>
-      <HStack space={2}>
-        <Input flex={1} placeholder={'Add Task'} {...fields.title} />
+      <HStack w="100%" space={2}>
+        <Input w="100%" flex={1} placeholder={'Add Task'} {...fields.title} />
         <Button onPress={onPressButton}>追加</Button>
       </HStack>
       {fields.title.error && <Alert>{fields.title.error?.message}</Alert>}

@@ -4,12 +4,10 @@ import {
   StackActions,
 } from '@react-navigation/native';
 
-import {INavigation} from '@/services/navigation/types';
+import {INavigation} from '@domain/app/services/navigation/types';
 
-export const navigationRef =
-  createNavigationContainerRef<any /*FIXME: navigationRef.navigateの型エラーが解決できない*/>();
+export const navigationRef = createNavigationContainerRef<any>();
 
-// TODO:
 export const createNavigation = <
   TParamList extends ParamListBase,
 >(): INavigation<TParamList> => {
@@ -29,18 +27,18 @@ export const createNavigation = <
     popToTop: () => {
       navigationRef.dispatch(StackActions.popToTop());
     },
-    push: (name: string, params?: object | undefined) => {
-      navigationRef.dispatch(StackActions.push(name, params));
+    push: (name, params) => {
+      navigationRef.dispatch(StackActions.push(name as string, params));
     },
-    replace: (name: string, params?: object | undefined) => {
-      navigationRef.dispatch(StackActions.replace(name, params));
+    replace: (name, params) => {
+      navigationRef.dispatch(StackActions.replace(name as string, params));
     },
-    reset: (name: string, params?: object | undefined) => {
+    reset: (name, params) => {
       navigationRef.resetRoot({
         index: 0,
         routes: [
           {
-            name,
+            name: name as string,
             params,
           },
         ],

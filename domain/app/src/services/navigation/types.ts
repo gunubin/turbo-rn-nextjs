@@ -1,19 +1,3 @@
-// import {Route, Query} from 'nextjs-routes';
-type Route = any;
-type Query = any;
-
-interface StaticRoute<Pathname = string> {
-  pathname: Pathname;
-  query?: Query | undefined;
-  hash?: string | null | undefined;
-}
-
-type FindParamList<Target extends StaticRoute> = Record<
-  Target['pathname'],
-  Target['query']
->;
-
-export type WebParamList = FindParamList<Route>;
 
 type ParamListBase = Record<string, object | undefined>;
 

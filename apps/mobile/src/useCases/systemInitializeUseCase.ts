@@ -1,4 +1,4 @@
-import {createUseCaseFactory} from '@domain/app/lib/useCase/utils';
+import {createUseCaseFactory} from '@domain/app/lib/useCase';
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(() => resolve({}), msec));

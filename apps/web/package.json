@@ -6,7 +6,8 @@
     "@domain/todo": "*",
     "bootstrap": "^5.2.3",
     "form": "*",
-    "next": "^13.1.1",
+    "next": "^13.2.4",
+    "nextjs-routes": "^1.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.58.3"
@@ -18,13 +19,11 @@
     "@types/react-dom": "^18.0.7",
     "dotenv": "^16.0.3",
     "eslint-config-custom": "*",
-    "json-server": "^0.17.1",
     "tsconfig": "*",
     "typescript": "^4.5.3"
   },
   "private": true,
   "scripts": {
-    "api": "json-server -p 3001 -w db.json",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",

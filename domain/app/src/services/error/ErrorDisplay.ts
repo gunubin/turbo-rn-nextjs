@@ -4,7 +4,7 @@ import {DialogLabels} from '@domain/app/models/modal/MessageDialogPayload';
 import {
   ErrorHandler,
   ErrorPayload,
-  IErrorManager,
+  IErrorDisplay,
 } from '@domain/app/services/error/types';
 import {createMessageDialog} from '@domain/app/services/modal/MessageDialog';
 import {createToastManger} from '@domain/app/services/toast/ToastManager';
@@ -20,9 +20,9 @@ const getErrorMessage = (error: BaseError, payload: ErrorPayload): string => {
 };
 
 // TODO: hanlderはshowのargにする
-export const createErrorManager = <TError extends BaseError>(
+export const createErrorDisplay = <TError extends BaseError>(
   errorHandler: ErrorHandler<TError>
-): IErrorManager<TError> => {
+): IErrorDisplay<TError> => {
   const messageDialog = createMessageDialog();
   const toastManager = createToastManger();
   const defaultAction = {

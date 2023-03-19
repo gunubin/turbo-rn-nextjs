@@ -13,6 +13,7 @@ export const createBlockingIndicator = (): IBlockingIndicator => {
       return redux.dispatch(actions.cleared());
     },
     hide: ({id} = {}) => {
+      // TODO: indicatorが重複するとバグる
       const indicator = indicatorSelectors.selectLatestIndicator(
         redux.getState()
       );

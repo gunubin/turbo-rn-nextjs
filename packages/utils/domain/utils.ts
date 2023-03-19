@@ -1,18 +1,12 @@
-import {Rule, ValueObject} from './types';
+import * as z from 'zod';
 
-// MEMO: 命名悩み defineValueObjectCreator的な
-export const defineValueObject = <
-  TCreate extends (val: any) => any,
-  TRules extends Rule<any>[]
->({
-  create,
-  rules,
-}: {
-  create: TCreate;
-  rules: TRules;
-}): ValueObject<ReturnType<TCreate>, TRules> => {
+import {ValueObject} from './types';
+
+export const createValueObject = <T extends z.ZodType>(schema: T): ValueObject<z.infer<T>, z.input<T>> => {
   return {
-    create,
-    rules,
+    create: (data: z.input<T>): z.infer<T> => {
+      return schema.parse(data);
+    },
+    schema,
   };
 };

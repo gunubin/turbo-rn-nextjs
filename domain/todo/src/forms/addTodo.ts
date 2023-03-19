@@ -8,10 +8,11 @@ export type FormValues = {
 
 export const addTodoSchema = createSchema<FormValues>({
   title: {
-    required: {message: ''},
-    ruleMessages: {
-      maxLength: '100文字以下で入力してください',
+    errorMessages: {
+      too_big: '100文字以下で入力してください',
+      too_small: '',
     },
     valueObject: TodoTitle,
   },
 });
+

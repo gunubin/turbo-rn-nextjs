@@ -2,7 +2,8 @@
   "name": "utils",
   "version": "0.0.0",
   "dependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
